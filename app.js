@@ -14,6 +14,10 @@ var app = express();
 app.set('views', path.join(__dirname, 'resources/views'));
 app.set('view engine', 'hbs');
 
+// custom - require hbs helpers && partials
+require('./app/hbs/helpers/extend.js');
+
+
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
