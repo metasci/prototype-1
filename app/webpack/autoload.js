@@ -19,7 +19,8 @@ getFiles('resources/assets/**/*.*', (err, files) => {
 	fs.writeFile('./app/webpack/asset_list.js', '', () => {
 		files.forEach((file_path) => {
 			// print import statement in asset_list
-			fs.appendFile('./app/webpack/asset_list.js', 'import "' + appRoot + '/' + file_path + '";', () => {});
+			if(file_path.slice(-3) !== ('.swp'))
+				fs.appendFile('./app/webpack/asset_list.js', 'import "' + appRoot + '/' + file_path + '";', () => {});
 		});		
 	});
 });
