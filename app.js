@@ -17,8 +17,7 @@ app.set('view engine', 'hbs');
 // custom - require hbs helpers && partials
 // make put these imports in a single js file in app/hbs
 // autoload all helper files into ^ js file
-require('./app/hbs/helpers/extend');
-require('./app/hbs/partials/register_dir');
+require('./app/hbs/export');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));

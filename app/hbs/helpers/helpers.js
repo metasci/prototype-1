@@ -1,3 +1,5 @@
+// Handlebars Helper file
+
 var hbs = require('hbs');
 
 var blocks = {};
@@ -18,3 +20,7 @@ hbs.registerHelper('block', function(name) {
     blocks[name] = [];
     return val;
 });
+
+/*
+ *  Add your custom Handlebars helpers below this line	
+ */ 
