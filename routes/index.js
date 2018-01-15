@@ -7,6 +7,10 @@ const router = express.Router();
 const Homepage = require('../app/http/controllers/Homepage');
 
 
+const models = require('../database/models');
+
+	   
+
 
 
 /*
@@ -16,7 +20,15 @@ const Homepage = require('../app/http/controllers/Homepage');
 // GET home page.
 router.get('/', Homepage.index);
 
+router.get('/db', (req, res)=>{
 
+	models.User.findAll()
+		.then((users) => {
+			res.send(users);
+		});
+
+	  
+});
 
 
 
