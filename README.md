@@ -1,6 +1,14 @@
 # MVCexpressJS
 
-## - express
-## - handlebars
-## - sequelize
-## - mocha && chai
+
+### - express
+
+## Templating
+### - handlebars
+
+## Database Connectivity
+### - sequelize
+
+## Testing
+### - mocha
+### - chai
