@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "start": "node ./app/webpack/autoload && webpack && node ./bin/www",
-    "test": "mocha --recursive || true"
+    "test": "mocha ./test/unit/**/*.test.js || true",
+    "integration": "mocha ./test/integration/**/*.test.js || true"
+
   },
   "dependencies": {
     "app-root-path": "^2.0.1",
