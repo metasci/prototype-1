@@ -4,16 +4,24 @@
 
 ### - express
 
+
+
 ## Templating
 ### - handlebars
+
+
 
 ## Database Connectivity
 ### - MariaDB
 ### - sequelize (ORM)
 
+
+
 ## Testing
 ### - mocha
 ### - chai
+### - istanbul
+
 
 
 #### to do
