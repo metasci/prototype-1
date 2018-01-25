@@ -1,1 +1,1 @@
-import "/home/nick/Documents/projects/ucc_website/mern/MVCexpressJS/resources/assets/styles/style.css";
+import "/home/nick/Documents/projects/ucc_website/mern/prototype/prototype-1/resources/assets/styles/carousel.css";import "/home/nick/Documents/projects/ucc_website/mern/prototype/prototype-1/resources/assets/styles/style.css";

@@ -7,7 +7,6 @@
     "test": "mocha ./test/unit/**/*.test.js || true",
     "integration": "mocha ./test/integration/**/*.test.js || true",
     "coverage": "istanbul cover _mocha ./test/**/*.test.js -x *.test.js",
-    // chromium will need to be changed to your preferred browser opening command
     "showcoverage": "chromium coverage/lcov-report/index.html"
   },
   "dependencies": {
