@@ -22,9 +22,13 @@ const MainDash = require('../app/http/controllers/admin/MainDash');
  */
 const Auth = require('../app/http/middleware/Auth'); // redirect to login page
 
+
+
+
 router.use('/admin/', Auth.isAuthenticated);
 
-/* GET users listing. */
+
+
 router.get('/admin/', MainDash.index);
 
 module.exports = router;
