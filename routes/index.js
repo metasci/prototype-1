@@ -35,6 +35,22 @@ router.get('/', Homepage.index);
 
 router.get('/calendar', Calendar.index);
 
+router.get('/ministries', Ministries.index);
+
+router.get('/about', About.index);
+
+router.get('/photos', Photos.index);
+
+router.get('/worship', Worship.index);
+
+router.get('/rentals', Rentals.index);
+
+router.get('/contact', Contact.index);
+
+router.get('/staff', Staff.index);
+
+
+// db access example
 router.get('/db', (req, res)=>{
 
 	models.User.findAll()
