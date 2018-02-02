@@ -24,12 +24,33 @@ const Auth = require('../app/http/middleware/Auth'); // redirect to login page
 
 
 
+/*
+ * Assign middleware for routes in this file
+ */
+router.use('/', Auth.isAuthenticated);
 
-router.use('/admin/', Auth.isAuthenticated);
 
 
+router.get('/', MainDash.index);
 
-router.get('/admin/', MainDash.index);
+router.get('/homepage', Homepage.index);
+
+router.get('/ministries', Ministries.index);
+
+router.get('/about', About.index);
+
+router.get('/photos', Photos.index);
+
+router.get('/worship', Worship.index);
+
+router.get('/rentals', Rentals.index);
+
+router.get('/staff', Staff.index);
+
+router.get('/LoginPage', Newsletter.index);
+
+router.get('/account', AdminAccount.index);
+
 
 module.exports = router;
 
