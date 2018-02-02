@@ -2,7 +2,7 @@
 module.exports = {
 	
 	index: (req, res, next) => {
-	  res.render('pages/admin/mainDash');
+	  res.render('pages/admin/index');
 	},
 
 	/*
