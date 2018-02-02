@@ -2,7 +2,7 @@
 module.exports = {
 	
 	index: (req, res, next) => {
-	  res.render('pages/calendar');
+	  res.render('pages/public/calendar');
 	},
 
 	/*
