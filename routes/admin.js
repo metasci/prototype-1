@@ -10,16 +10,16 @@ const Controller = require('../app/http/controllers').admin;
 /*
  * middleware
  */
-const Auth = require('../app/http/middleware/Auth'); // redirect to login page
+const Middleware = require('../app/http/middleware'); // redirect to login page
 
 
 
 /*
  * Assign middleware for routes in this file
  */
-/*
- *router.use('/', Auth.isAuthenticated);
- */
+
+router.use('/', Middleware.Auth.isAuthenticated);
+
 
 
 
