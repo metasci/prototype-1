@@ -1,53 +1,32 @@
-const express = require('express');
-const router = express.Router();
-
-/*
- * Controller references
- */
-const Homepage = require('../app/http/controllers/public/Homepage');
-const Calendar = require('../app/http/controllers/public/Calendar'); 
-const Ministries = require('../app/http/controllers/public/Ministries'); 
-const About = require('../app/http/controllers/public/About');
-const Photos = require('../app/http/controllers/public/Photos');
-const Worship = require('../app/http/controllers/public/Worship');
-const Rentals = require('../app/http/controllers/public/Rentals');
-const Contact = require('../app/http/controllers/public/Contact');
-const Staff = require('../app/http/controllers/public/Staff');
-
-
-
-
-
-
-// models
-const models = require('../database/models');
+const express       = require('express');
+const router        = express.Router();
+const Controller    = require('../app/http/controllers').public;
+const models        = require('../database/models');
 
 	   
-
-
 
 /*
  * Routes
  */
 
 // GET home page.
-router.get('/', Homepage.index);
+router.get('/', Controller.Homepage.index);
 
-router.get('/calendar', Calendar.index);
+router.get('/calendar', Controller.Calendar.index);
 
-router.get('/ministries', Ministries.index);
+router.get('/ministries', Controller.Ministries.index);
 
-router.get('/about', About.index);
+router.get('/about', Controller.About.index);
 
-router.get('/photos', Photos.index);
+router.get('/photos', Controller.Photos.index);
 
-router.get('/worship', Worship.index);
+router.get('/worship', Controller.Worship.index);
 
-router.get('/rentals', Rentals.index);
+router.get('/rentals', Controller.Rentals.index);
 
-router.get('/contact', Contact.index);
+router.get('/contact', Controller.Contact.index);
 
-router.get('/staff', Staff.index);
+router.get('/staff', Controller.Staff.index);
 
 
 // db access example
