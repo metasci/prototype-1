@@ -9,7 +9,7 @@ const _ = require('lodash');
  */
 const {
 	alwaysTrue
-} = require(`${root}/app/http/controllers/Homepage`);
+} = require(`${root}/app/http/controllers/public/Homepage`);
 
 describe('#Homepage Controller', ()=>{
 	
