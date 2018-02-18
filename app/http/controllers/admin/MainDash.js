@@ -2,7 +2,8 @@
 module.exports = {
 	
 	index: (req, res, next) => {
-	  res.render('pages/admin/index');
+        console.log("yoyoyyo");
+	    res.render('pages/admin/index', { layout: 'adminLayout' });
 	},
 
 	/*
