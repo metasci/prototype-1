@@ -1,1 +1,10 @@
-import "/home/nick/Documents/projects/ucc_website/mern/prototype/prototype-1/resources/assets/styles/carousel.css";import "/home/nick/Documents/projects/ucc_website/mern/prototype/prototype-1/resources/assets/styles/style.css";
+import "/home/nick/Documents/projects/ucc_website/mern/prototype/prototype-1/resources/assets/public/js/ie/html5shiv.js";
+import "/home/nick/Documents/projects/ucc_website/mern/prototype/prototype-1/resources/assets/public/js/ie/respond.min.js";
+import "/home/nick/Documents/projects/ucc_website/mern/prototype/prototype-1/resources/assets/public/js/jquery.dropotron.min.js";
+import "/home/nick/Documents/projects/ucc_website/mern/prototype/prototype-1/resources/assets/public/js/jquery.min.js";
+import "/home/nick/Documents/projects/ucc_website/mern/prototype/prototype-1/resources/assets/public/js/jquery.scrollex.min.js";
+import "/home/nick/Documents/projects/ucc_website/mern/prototype/prototype-1/resources/assets/public/js/jquery.scrolly.min.js";
+import "/home/nick/Documents/projects/ucc_website/mern/prototype/prototype-1/resources/assets/public/js/main.js";
+import "/home/nick/Documents/projects/ucc_website/mern/prototype/prototype-1/resources/assets/public/js/skel.min.js";
+import "/home/nick/Documents/projects/ucc_website/mern/prototype/prototype-1/resources/assets/public/js/util.js";
+import "/home/nick/Documents/projects/ucc_website/mern/prototype/prototype-1/resources/assets/public/js/jquery.selectorr.min.js";

@@ -1,8 +1,10 @@
 const path = require('path');
-
-module.exports = {
+const webpack = require('webpack'); //to access built-in plugins
+const jquery = require('jquery');
+        
+const config = {
 	// define an entry point
-	entry: './app/webpack/entry.js',
+	entry: './app/webpack/public-entry.js',
 
 	//define output point
 	output: {
@@ -10,24 +12,59 @@ module.exports = {
 		filename: 'bundle.js'
 	},
 
-	module: {
-		loaders: [
-		    {
-		        test: /\.js$/,
-		        exclude: /(node_modules)/,
-		        loader: 'babel-loader',
-		        query: {
-				presets: ['es2015']
-		            }
-		    },
-		    {
-			test: /\.css$/,
-			loader: "style-loader!css-loader"
-		    },
-		    {
-			test: /\.(png|svg|jpg|gif)$/,
-			loaders: "file-loader"
-		    }
-		]
-	}
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /(node_modules)/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['es2015']
+                    }
+                }
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    {
+                        loader: 'style-loader'
+                    },
+                    {
+                        loader: 'css-loader'
+                    }
+                ]
+            },
+            {
+                test: /\.(png|svg|jpg|gif|ttf|eot|svg|otf)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                use: {
+                    loader: 'file-loader',
+                    options: {
+                        name: '../images/[name].[ext]'
+                    }
+                }
+            },
+            {
+                test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, 
+                use: {
+                    loader: "file-loader",
+                    options: {
+                        name: '../css/fonts/[name].[ext]'
+                    }
+                }
+            }
+        ]
+    },
+	/*
+     *plugins: [
+     *            new webpack.ProvidePlugin({
+     *                $: 'jquery',
+     *                jQuery: 'jquery'
+     *            })
+     *        ]
+	 */
 }
+
+
+module.exports = config; 
+

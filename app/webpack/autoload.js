@@ -12,7 +12,7 @@ function getFiles(src, callback){
 }
 
 
-getFiles('resources/assets/**/*.*', (err, files) => {
+getFiles('resources/assets/public/js/**/*.*', (err, files) => {
 	if(err) throw err;
 	
 	// overwrite existing asset_list with blank file
@@ -20,7 +20,7 @@ getFiles('resources/assets/**/*.*', (err, files) => {
 		files.forEach((file_path) => {
 			// print import statement in asset_list
 			if(file_path.slice(-3) !== ('.swp'))
-				fs.appendFile('./app/webpack/asset_list.js', 'import "' + appRoot + '/' + file_path + '";', () => {});
+				fs.appendFile('./app/webpack/asset_list.js', 'import "' + appRoot + '/' + file_path + '";\n', () => {});
 		});		
 	});
 });
