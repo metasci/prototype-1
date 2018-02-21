@@ -4,7 +4,7 @@
 module.exports = {
 	
 	index: (req, res, next) => {
-	  res.render('pages/public/index', { title: 'Express'});
+	  res.render('pages/public/index', { headerClass: 'alt'});
 	},
 
 	/*
