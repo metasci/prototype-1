@@ -2249,7 +2249,7 @@
 			}
 
 				.quotes > article .author .name {
-					color: #052e5c;
+					color: #0a56a8;
 					display: block;
 					font-size: 1.2em;
 					font-weight: 400;
@@ -2973,10 +2973,10 @@
 		@media screen and (max-width: 980px) {
 
 			.image.fit.portrait img {
-				-moz-object-fit: cover;
-				-webkit-object-fit: cover;
-				-ms-object-fit: cover;
-				object-fit: cover;
+				-moz-object-fit: contain;
+				-webkit-object-fit: contain;
+				-ms-object-fit: contain;
+				object-fit: contain;
 				-moz-object-position: center;
 				-webkit-object-position: center;
 				-ms-object-position: center;
@@ -4885,3 +4885,7 @@
 				}
 
 		}
+
+
+
+

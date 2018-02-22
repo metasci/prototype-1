@@ -1,0 +1,21 @@
+@media screen and (max-width: 480px) {
+    .hide-on-small {
+        display: none;
+    }
+}
+
+#creditfooter {
+    display: none;
+}
+/*
+.text-center {
+    text-align: center;
+}
+.text-left {
+    text-align: left;
+}
+*/
+.dailydevotional {
+    max-height: 300px;
+    overflow: scroll;
+}

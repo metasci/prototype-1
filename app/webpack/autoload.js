@@ -12,7 +12,7 @@ function getFiles(src, callback){
 }
 
 
-getFiles('resources/assets/public/js/**/*.*', (err, files) => {
+getFiles('resources/assets/public/**/*.*', (err, files) => {
 	if(err) throw err;
 	
 	// overwrite existing asset_list with blank file

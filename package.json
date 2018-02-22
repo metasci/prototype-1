@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
+    "build": "node ./app/webpack/autoload && webpack",
     "test": "mocha ./test/unit/**/*.test.js || true",
     "integration": "mocha ./test/integration/**/*.test.js || true",
     "coverage": "istanbul cover _mocha ./test/**/*.test.js -x *.test.js",

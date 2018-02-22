@@ -17,7 +17,7 @@
 							<span class="image fit portrait"><img src="images/ajustworldlogo.png" alt="" /></span>
 						</section>
 						<section>
-							<h2>Adipiscing ornare risus morbi est est blandi magna vel euismod tempus</h2>
+							<h2>Mission Statement</h2>
 							<div class="features">
 								<article class="icon fa-diamond">
 									<h3>Sed veroeros</h3>
@@ -114,60 +114,37 @@
 
 		<!-- Four -->
 			<section id="four" class="quotes">
-				<article class="icon fa-quote-left">
-					<span class="image"><img src="images/pic03.jpg" alt="" data-position="center" /></span>
-					<h2>"Sed ultrices consequat dolor nulla fringilla dignissim"</h2>
-					<div class="author">
-						<span class="name">Jane Doe</span>
-						<span class="title">Ipsum dolor nullam</span>
-					</div>
+				<article>
+					<img class="hide-on-small" src="images/diane.png" alt="" data-position="left" />
+					<h2>A message from the pastor.</h2>
 				</article>
 				<article class="icon fa-quote-left">
 					<span class="image"><img src="images/pic04.jpg" alt="" data-position="left" /></span>
 					<h2>"Nam velit et lorem porta quis at pulvinar tellus nibh"</h2>
 					<div class="author">
-						<span class="name">John Doe</span>
-						<span class="title">Ipsum dolor nullam</span>
+						<span class="name">Pastor Diane White</span>
 					</div>
 				</article>
 			</section>
 
 		<!-- Five -->
-			<section id="five" class="wrapper">
-				<div class="inner">
-					<div class="split">
-						<section>
-							<h2>Feugiat lorem ipsum dolor velit amet dolor dignissim pharetra</h2>
-							<span class="image fit"><img src="images/pic06.jpg" alt="" /></span>
-							<p>Maecenas id feugiat nunc. Integer gravida augue libero, quis pellentesque amet pharetra a. Ut sagittis ipsum nec velit porttitor, sed convallis ligula pellentesque. Mauris et dignissim sem lacinia lorem ipsum dolor.</p>
-							<ul class="actions">
-								<li><a href="#" class="button">Learn More</a></li>
-							</ul>
-						</section>
-						<section>
-							<div class="ratings">
-								<article>
-									<h3>Ipsum amet</h3>
-									<div class="progress" data-progress="60">60%</div>
-								</article>
-								<article>
-									<h3>Adipiscing feugiat</h3>
-									<div class="progress" data-progress="90">90%</div>
-								</article>
-								<article>
-									<h3>Dolor ligula</h3>
-									<div class="progress" data-progress="75">75%</div>
-								</article>
-								<article>
-									<h3>Libero magna</h3>
-									<div class="progress" data-progress="45">45%</div>
-								</article>
-								<article>
-									<h3>Nec lacinia</h3>
-									<div class="progress" data-progress="55">55%</div>
-								</article>
-							</div>
-						</section>
-					</div>
+			<section id="five" class="wrapper text-center">
+				<h2>Daily Devotional - United Church of Christ</h2>
+				<div class="inner dailydevotional box text-left">
+	
+					<script src="http://feeds.feedburner.com/uccdailydevotional?format=sigpro&nItems=10&displayTitle=false" ></script><noscript><p>Subscribe to RSS headline updates from: <a href="http://feeds.feedburner.com/UnitedChurchOfChrist">Powered by FeedBurner</p></noscript>				
 				</div>
-			</section>
+
+			
+
+	</section>
+
+
+{{#extend "scripts"}}
+<script>
+	$(function(){
+		let feed = $('.dailydevotional').find('ul');
+		feed.addClass('alt');
+	});
+</script>
+{{/extend}}

@@ -7,7 +7,7 @@ describe('#Public Routes', () => {
     it('returns the homepage', done => {
         request.get('/')
             .expect(200)
-            .expect(/Heading/, done);
+            .expect(/Mission Statement/, done);
     });
 
     it('returns the calendar page', done => {

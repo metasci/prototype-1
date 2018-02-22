@@ -187,17 +187,18 @@
 						$image = $this.find('.image'),
 						$img = $image.find('img'),
 						x;
-
-					// Assign image.
+                        
+                    if(typeof $img.attr('src') !== 'undefined'){
+					    // Assign image.
 						$this.css('background-image', 'url(' + $img.attr('src') + ')');
 
-					// Set background position.
+					    // Set background position.
 						if (x = $img.data('position'))
 							$this.css('background-position', x);
 
-					// Hide image.
+					    // Hide image.
 						$image.hide();
-
+                    }
 				});
 
 	});
