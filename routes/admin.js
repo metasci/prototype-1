@@ -25,6 +25,8 @@ router.use('/', Middleware.Auth.isAuthenticated);
 
 router.get('/', Controller.MainDash.index);
 
+router.get('/login', Controller.Login.index);
+
 router.get('/homepage', Controller.Homepage.index);
 
 router.get('/ministries', Controller.Ministries.index);
@@ -40,8 +42,6 @@ router.get('/rentals', Controller.Rentals.index);
 router.get('/staff', Controller.Staff.index);
 
 router.get('/newsletter', Controller.Newsletter.index);
-
-router.get('/login', Controller.Login.index);
 
 router.get('/account', Controller.AdminAccount.index);
 
