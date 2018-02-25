@@ -9,18 +9,34 @@
 
     <title>UCC Clinton: ADMIN</title>
     
-    <script src="dist/bundle.js"></script>    
+    <script src="dist/admin-bundle.js"></script>
     <!-- Custom styles for this template -->
+    {{{block "styles"}}}
   </head>
   <body>
+    {{>admintopnav}}
     
-    {{>adminNavbar}}
+    <div class="container-fluid">
+      <div class="row">
+        {{>adminsidenav}}
 
-    <main role="main">
+        <main role="main">
        
-    {{{body}}}
+          {{{body}}}
 
-    </main>
+        </main>
+      </div>
+    </div>
 
+    {{!-- DELETE THIS --}}
+    <!-- Icons -->
+    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+    <script>
+      feather.replace()
+    </script>
+    {{!-- DELETE --}}
+
+
+    {{{block "scripts"}}}
   </body>
 </html>

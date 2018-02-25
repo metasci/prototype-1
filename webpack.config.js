@@ -4,12 +4,15 @@ const jquery = require('jquery');
         
 const config = {
 	// define an entry point
-	entry: './app/webpack/public-entry.js',
+	entry: {
+        'public-bundle': './app/webpack/public-entry.js', 
+        'login-bundle': './app/webpack/login-entry.js', 
+        'admin-bundle': './app/webpack/admin-entry.js'},
 
 	//define output point
 	output: {
 		path: path.resolve(__dirname, 'public/dist'),
-		filename: 'bundle.js'
+		filename: '[name].js'
 	},
 
     module: {

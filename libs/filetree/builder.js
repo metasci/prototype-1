@@ -1,9 +1,9 @@
 const fs            = require('fs');
 const path          = require('path');
 
-    /*
-    * recursive function that builds an object of controllers out of files in this and all subdirectories
-    */
+/*
+* recursive function that builds an object of controllers out of files in this and all subdirectories
+*/
 function build(directory) {
     let temp = {}; 
     fs.readdirSync(directory)
