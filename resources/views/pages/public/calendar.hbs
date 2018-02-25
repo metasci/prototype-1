@@ -1,15 +1,54 @@
+{{#extend "styles"}}
+    <style>
+        .go-to-calendar {
+            display: none;
+            padding: 50px 0;
+            text-align: center;
+        }
+    </style>
+{{/extend}}
+
 <!-- Main -->
-            <section id="main" class="wrapper">
-                <div class="inner">
+<section id="main" class="wrapper">
+    <div class="inner">
 
-                    <header>
-                        <h1>Generic</h1>
-                        <p>Feugiat adipiscing nisl amet</p>
-                    </header>
-                    <a href="#" class="image main"><img src="images/pic07.jpg" alt="" /></a>
-                    <p>Vis accumsan feugiat adipiscing nisl amet adipiscing accumsan blandit accumsan sapien blandit ac amet faucibus aliquet placerat commodo. Interdum ante aliquet commodo accumsan vis phasellus adipiscing. Ornare a in lacinia. Vestibulum accumsan ac metus massa tempor. Accumsan in lacinia ornare massa amet. Ac interdum ac non praesent. Cubilia lacinia interdum massa faucibus blandit nullam. Accumsan phasellus nunc integer. Accumsan euismod nunc adipiscing lacinia erat ut sit. Arcu amet. Id massa aliquet arcu accumsan lorem amet accumsan.</p>
-                    <p>Amet nibh adipiscing adipiscing. Commodo ante vis placerat interdum massa massa primis. Tempus condimentum tempus non ac varius cubilia adipiscing placerat lorem turpis at. Aliquet lorem porttitor interdum. Amet lacus. Aliquam lobortis faucibus blandit ac phasellus. In amet magna non interdum volutpat porttitor metus a ante ac neque. Nisi turpis. Commodo col. Interdum adipiscing mollis ut aliquam id ante adipiscing commodo integer arcu amet Ac interdum ac non praesent. Cubilia lacinia interdum massa faucibus blandit nullam. Accumsan phasellus nunc integer. Accumsan euismod nunc adipiscing lacinia erat ut sit. Arcu amet. Id massa aliquet arcu accumsan lorem amet accumsan commodo odio cubilia ac eu interdum placerat placerat arcu commodo lobortis adipiscing semper ornare pellentesque.</p>
-                    <p>Amet nibh adipiscing adipiscing. Commodo ante vis placerat interdum massa massa primis. Tempus condimentum tempus non ac varius cubilia adipiscing placerat lorem turpis at. Aliquet lorem porttitor interdum. Amet lacus. Aliquam lobortis faucibus blandit ac phasellus. In amet magna non interdum volutpat porttitor metus a ante ac neque. Nisi turpis. Commodo col. Interdum adipiscing mollis ut aliquam id ante adipiscing commodo integer arcu amet blandit adipiscing arcu ante.</p>
+        <header>
+            <h1>Calendar</h1>
+            <p>Feugiat adipiscing nisl amet</p>
+        </header>
+    </div>
+    <div class="container calendar-container">
+        <div class="container go-to-calendar">
+            <a 
+            href="https://calendar.google.com/calendar/embed?src=clintonunitedchurchofchrist%40gmail.com&ctz=America%2FNew_York" 
+            class="button special">
+                <i class="fa fa-calendar"></i>
+                &nbsp;&nbsp;View Calendar
+            </a>
+        </div>
 
-                </div>
-            </section>
+        <iframe src="https://calendar.google.com/calendar/embed?showTitle=0&amp;showNav=0&amp;showPrint=0&amp;height=800&amp;wkst=1&amp;bgcolor=%23ffffff&amp;src=clintonunitedchurchofchrist%40gmail.com&amp;color=%231B887A&amp;src=m8ef9rvrk7dmh4snuhs3tbok28%40group.calendar.google.com&amp;color=%2323164E&amp;ctz=America%2FNew_York" style="border-width:0" width="1200" height="800" frameborder="0" scrolling="no"></iframe>
+    </div>
+</section>
+
+
+{{#extend "scripts"}}
+    <script>
+        $(function(){
+           let width = $(window).width();
+           let iframe = $('iframe');
+           if(width < 500){
+               iframe.css('display', 'none');
+               $('.go-to-calendar').css('display','inline-block');
+           }else if(width < 1200){
+                iframe.attr('width', width);
+                iframe.attr('height', width*2/3);
+            }
+        });
+    </script>
+{{/extend}}
+
+
+
+
+
