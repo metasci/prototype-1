@@ -5,4 +5,5 @@ module.exports = {
 	  res.render('pages/public/contact');
 	}
 
+	// write function for handling email post
 }

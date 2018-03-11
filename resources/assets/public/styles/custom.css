@@ -8,11 +8,13 @@
     display: none;
 }
 
-.dailydevotional {
+.scrollbox {
     max-height: 300px;
     overflow: scroll;
 }
-
+footer {
+    box-shadow: 0 50vh 0 50vh #052e5c;
+}
 .footer-container {
     text-align: center;
 }

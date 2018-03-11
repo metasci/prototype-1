@@ -30,6 +30,8 @@ router.get('/login', Controller.Login.index);
 router.get('/homepage', Controller.Homepage.index);
 
 router.get('/ministries', Controller.Ministries.index);
+router.post('/ministries', Controller.Ministries.create);
+
 
 router.get('/about', Controller.About.index);
 

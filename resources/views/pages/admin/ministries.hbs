@@ -1,0 +1,73 @@
+{{#extend "styles"}}
+    <link href="https://cdn.quilljs.com/1.3.5/quill.snow.css" rel="stylesheet">
+{{/extend}}
+
+
+<div class="container">
+    <h2>Ministries</h2>
+    <div id="accordion">
+        {{#each ministry}}
+
+            <div class="card">
+                <div class="card-header" id="heading{{@index}}">
+                    <h5 class="mb-0">
+                        <button class="btn btn-info" data-toggle="collapse" data-target="#collapse{{@index}}" aria-expanded="true" aria-controls="collapse{{@index}}">
+                        {{@key}}
+                        </button>
+                        <button class="btn btn-danger">delete</button>
+                    </h5>
+                </div>
+
+                <div id="collapse{{@index}}" class="collapse" aria-labelledby="heading{{@index}}" data-parent="#accordion">
+                    <div class="card-body">
+                        {{this}}
+                    </div>
+                </div>
+            </div>
+
+        {{/each}}
+    </div>
+
+    {{!-- add new ministries --}}
+    <div class="container topmargin border padding">
+        <h4>Add a new ministry</h4>
+        <form onsubmit="return newMinistry(event);">
+            <div class="form-group">
+                <label for="ministrytitle">Title</label>
+                <input id="ministrytitle" type="title" class="form-control" id="ministrytitle" placeholder="Enter Title">
+            </div>
+            <div id="editor">
+                <p>enter new ministry description here</p>
+            </div>
+            <button type="submit" class="btn btn-primary topmargin">Submit</button>
+        </form>
+    </div>
+
+
+</div>
+
+{{#extend "scripts"}}
+    <!-- Include the Quill library -->
+    <script src="https://cdn.quilljs.com/1.3.5/quill.js"></script>
+    <script>
+        // Initialize Quill editor
+        var quill = new Quill('#editor', {
+            theme: 'snow'
+        });
+
+        function newMinistry(event){
+            event.preventDefault();
+            
+            const data = {};
+            data.title = $('#ministrytitle').val();
+            data.description = encodeURI($('#editor .ql-editor').html());
+
+            $.post('/admin/ministries', data, function(data, status){
+                
+                location.reload();
+            });
+
+            return false;
+        }
+    </script>
+{{/extend}}
