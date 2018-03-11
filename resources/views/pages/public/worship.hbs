@@ -1,15 +1,63 @@
-<!-- Main -->
-            <section id="main" class="wrapper">
-                <div class="inner">
+{{#extend "styles"}}
+<style>
+    
+</style>
+{{/extend}}
 
-                    <header>
-                        <h1>Generic</h1>
-                        <p>Feugiat adipiscing nisl amet</p>
-                    </header>
-                    <a href="#" class="image main"><img src="images/pic07.jpg" alt="" /></a>
-                    <p>Vis accumsan feugiat adipiscing nisl amet adipiscing accumsan blandit accumsan sapien blandit ac amet faucibus aliquet placerat commodo. Interdum ante aliquet commodo accumsan vis phasellus adipiscing. Ornare a in lacinia. Vestibulum accumsan ac metus massa tempor. Accumsan in lacinia ornare massa amet. Ac interdum ac non praesent. Cubilia lacinia interdum massa faucibus blandit nullam. Accumsan phasellus nunc integer. Accumsan euismod nunc adipiscing lacinia erat ut sit. Arcu amet. Id massa aliquet arcu accumsan lorem amet accumsan.</p>
-                    <p>Amet nibh adipiscing adipiscing. Commodo ante vis placerat interdum massa massa primis. Tempus condimentum tempus non ac varius cubilia adipiscing placerat lorem turpis at. Aliquet lorem porttitor interdum. Amet lacus. Aliquam lobortis faucibus blandit ac phasellus. In amet magna non interdum volutpat porttitor metus a ante ac neque. Nisi turpis. Commodo col. Interdum adipiscing mollis ut aliquam id ante adipiscing commodo integer arcu amet Ac interdum ac non praesent. Cubilia lacinia interdum massa faucibus blandit nullam. Accumsan phasellus nunc integer. Accumsan euismod nunc adipiscing lacinia erat ut sit. Arcu amet. Id massa aliquet arcu accumsan lorem amet accumsan commodo odio cubilia ac eu interdum placerat placerat arcu commodo lobortis adipiscing semper ornare pellentesque.</p>
-                    <p>Amet nibh adipiscing adipiscing. Commodo ante vis placerat interdum massa massa primis. Tempus condimentum tempus non ac varius cubilia adipiscing placerat lorem turpis at. Aliquet lorem porttitor interdum. Amet lacus. Aliquam lobortis faucibus blandit ac phasellus. In amet magna non interdum volutpat porttitor metus a ante ac neque. Nisi turpis. Commodo col. Interdum adipiscing mollis ut aliquam id ante adipiscing commodo integer arcu amet blandit adipiscing arcu ante.</p>
+<!-- Main -->
+<section id="main" class="wrapper">
+    <div class="inner">
+
+        <header>
+            <h1>Worship</h1>
+            <p>Feugiat adipiscing nisl amet</p>
+        </header>
+        <a href="#" class="image main">
+            <img src="images/pic07.jpg" alt="" />
+        </a>
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col worship-left-col">
+
+                    <h3 class="worship-label">Communion Times:</h3>
+                    <ul>
+                        {{#each times.communion}}
+                            <li>{{this}}</li>
+                        {{/each}}
+                    </ul>
+
+                    <h3 class="worship-label">Service Times:</h3>
+                    <ul>
+                        {{#each times.service}}
+                            <li>{{this}}</li>
+                        {{/each}}
+                    </ul>
+
+                    <h3 class="worship-label">Christian Education</h3>
+                    <ul>
+                        <li>sunday school</li>
+                        <li>bible study</li>
+                    </ul>
 
                 </div>
-            </section>
+
+                <div class="col worship-right-col">
+
+                    <h3 class="worship-label">Weekly Worship Bulletin</h3>
+                    <a href="{{docs.bulletin}}" class="button icon fa-download" target="_blank">Download PDF</a>
+
+
+                    <h3 class="worship-label">Refrigerator Page</h3>
+                    <a href="{{docs.refrigerator}}" class="button icon fa-download" target="_blank">Download PDF</a>
+                    
+                    
+                    <h3 class="worship-label">Music</h3>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

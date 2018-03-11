@@ -1,15 +1,38 @@
 <!-- Main -->
-            <section id="main" class="wrapper">
-                <div class="inner">
+<section id="main" class="wrapper">
+    <div class="inner">
 
-                    <header>
-                        <h1>Generic</h1>
-                        <p>Feugiat adipiscing nisl amet</p>
-                    </header>
-                    <a href="#" class="image main"><img src="images/pic07.jpg" alt="" /></a>
-                    <p>Vis accumsan feugiat adipiscing nisl amet adipiscing accumsan blandit accumsan sapien blandit ac amet faucibus aliquet placerat commodo. Interdum ante aliquet commodo accumsan vis phasellus adipiscing. Ornare a in lacinia. Vestibulum accumsan ac metus massa tempor. Accumsan in lacinia ornare massa amet. Ac interdum ac non praesent. Cubilia lacinia interdum massa faucibus blandit nullam. Accumsan phasellus nunc integer. Accumsan euismod nunc adipiscing lacinia erat ut sit. Arcu amet. Id massa aliquet arcu accumsan lorem amet accumsan.</p>
-                    <p>Amet nibh adipiscing adipiscing. Commodo ante vis placerat interdum massa massa primis. Tempus condimentum tempus non ac varius cubilia adipiscing placerat lorem turpis at. Aliquet lorem porttitor interdum. Amet lacus. Aliquam lobortis faucibus blandit ac phasellus. In amet magna non interdum volutpat porttitor metus a ante ac neque. Nisi turpis. Commodo col. Interdum adipiscing mollis ut aliquam id ante adipiscing commodo integer arcu amet Ac interdum ac non praesent. Cubilia lacinia interdum massa faucibus blandit nullam. Accumsan phasellus nunc integer. Accumsan euismod nunc adipiscing lacinia erat ut sit. Arcu amet. Id massa aliquet arcu accumsan lorem amet accumsan commodo odio cubilia ac eu interdum placerat placerat arcu commodo lobortis adipiscing semper ornare pellentesque.</p>
-                    <p>Amet nibh adipiscing adipiscing. Commodo ante vis placerat interdum massa massa primis. Tempus condimentum tempus non ac varius cubilia adipiscing placerat lorem turpis at. Aliquet lorem porttitor interdum. Amet lacus. Aliquam lobortis faucibus blandit ac phasellus. In amet magna non interdum volutpat porttitor metus a ante ac neque. Nisi turpis. Commodo col. Interdum adipiscing mollis ut aliquam id ante adipiscing commodo integer arcu amet blandit adipiscing arcu ante.</p>
+        <header>
+            <h1>Ministries</h1>
+            <p>Feugiat adipiscing nisl amet</p>
+        </header>
+        <a href="#" class="image main"><img src="images/pic07.jpg" alt="" /></a>
+        
+        <div class="container">
+            <div id="accordion">
 
-                </div>
-            </section>
+                {{#each ministry}}
+
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapse{{@index}}" aria-expanded="true" aria-controls="collapseOne">
+                            {{@key}}
+                            </button>
+                        </h5>
+                        </div>
+
+                        <div id="collapse{{@index}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                            {{this}}
+                        </div>
+                        </div>
+                    </div>
+
+                {{/each}}
+                
+            </div>
+        </div>
+
+    </div>
+</section>
