@@ -41,3 +41,8 @@
         border-left: 2px solid gray
     }
 }
+
+/* staff && photos page */
+.image-card {
+    margin-bottom: 15px;
+}
