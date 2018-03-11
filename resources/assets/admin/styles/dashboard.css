@@ -103,3 +103,17 @@ body {
 .padding {
   padding: 20px;
 }
+
+
+@media screen and (max-width: 767px) {
+  .gt-md {
+    display: none;
+  }
+}
+
+
+@media screen and (min-width: 768px) {
+  .lt-md {
+    display: none;
+  }
+}
