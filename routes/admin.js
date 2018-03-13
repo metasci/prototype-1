@@ -28,6 +28,7 @@ router.get('/', Controller.MainDash.index);
 router.get('/login', Controller.Login.index);
 
 router.get('/homepage', Controller.Homepage.index);
+router.post('/homepage', Controller.Homepage.create);
 
 router.get('/ministries', Controller.Ministries.index);
 router.post('/ministries', Controller.Ministries.create);

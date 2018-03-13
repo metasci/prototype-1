@@ -18,6 +18,15 @@ module.exports = {
 		];
 
 		res.render('pages/admin/homepage');
+	},
+
+
+	create: (req,res,next) => {
+
+		// add this new highlight to the database
+		console.log(JSON.stringify(req.body));
+
+		res.redirect('/admin/homepage');
 	}
 
 }

@@ -13,13 +13,16 @@ module.exports = {
 		res.render('pages/admin/ministries');
 	},
 
-
+	/**
+	 * respond to post
+	 * add new ministry to database
+	 */
 	create: (req, res, next) => {
-
 		let newMinistry = {
 			title: req.body.title,
 			description: req.body.description
 		}
+		// add new ministry to database here
 
 		res.sendStatus(200);
 	}
