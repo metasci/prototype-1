@@ -41,6 +41,7 @@ router.get('/photos', Controller.Photos.index);
 router.get('/worship', Controller.Worship.index);
 
 router.get('/rentals', Controller.Rentals.index);
+router.post('/rentals', Controller.Rentals.create);
 
 router.get('/staff', Controller.Staff.index);
 
