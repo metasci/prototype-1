@@ -63,7 +63,7 @@
             data.description = encodeURI($('#editor .ql-editor').html());
 
             $.post('/admin/ministries', data, function(data, status){
-                
+    
                 location.reload();
             });
 
