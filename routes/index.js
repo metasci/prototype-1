@@ -22,7 +22,7 @@ router.get('/photos', Controller.Photos.index);
 
 router.get('/worship', Controller.Worship.index);
 
-router.get('/rentals', Controller.Rentals.index);
+router.get('/weddings', Controller.Weddings.index);
 
 router.get('/contact', Controller.Contact.index);
 
