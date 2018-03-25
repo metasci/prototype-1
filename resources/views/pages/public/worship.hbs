@@ -1,3 +1,12 @@
+{{#extend "styles"}}
+    <style>
+        .worship-docs {
+            background-color: blue; 
+            text-align: center;
+        }
+    </style>
+{{/extend}}
+
 
 <!-- Main -->
 <section id="main" class="wrapper">
@@ -11,8 +20,22 @@
             <img src="images/pic07.jpg" alt="" />
         </a>
 
-        <div class="container">
-
+        <div class="container worship-docs">
+            <div class="row">
+                <div class="col">
+                    
+                    <h3 class="worship-label">Weekly Worship Bulletin</h3>
+                    <a href="{{docs.bulletin}}" class="button icon fa-download" target="_blank">Download PDF</a>
+                </div>
+                <div class="col">
+                    <h3 class="worship-label">Refrigerator Page</h3>
+                    <a href="{{docs.refrigerator}}" class="button icon fa-download" target="_blank">Download PDF</a>
+                </div>
+                <div class="col">
+                    <h3 class="worship-label">Newsletter</h3>
+                    <a href="{{docs.newsletter}}" class="button icon fa-download" target="_blank">Download PDF</a>
+                </div>
+            </div>
             <div class="row">
                 <div class="col worship-left-col">
 
@@ -38,8 +61,10 @@
 
                 </div>
 
+                
                 <div class="col worship-right-col">
 
+                    
                     <h3 class="worship-label">Weekly Worship Bulletin</h3>
                     <a href="{{docs.bulletin}}" class="button icon fa-download" target="_blank">Download PDF</a>
 
@@ -47,7 +72,9 @@
                     <h3 class="worship-label">Refrigerator Page</h3>
                     <a href="{{docs.refrigerator}}" class="button icon fa-download" target="_blank">Download PDF</a>
                     
-                    
+                    <h3 class="worship-label">Newsletter</h3>
+                    <a href="{{docs.newsletter}}" class="button icon fa-download" target="_blank">Download PDF</a>
+
                     <h3 class="worship-label">Music</h3>
 
                 </div>

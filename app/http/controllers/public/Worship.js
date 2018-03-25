@@ -10,7 +10,8 @@ module.exports = {
 		
 		res.locals.docs = {
 			bulletin: "https://www.google.com",
-			refrigerator: "https://www.stackoverflow.com"
+			refrigerator: "https://www.stackoverflow.com",
+			newsletter: "https://www.w3schools.com"
 		}
 		
 		res.render('pages/public/worship');
