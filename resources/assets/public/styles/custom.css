@@ -24,25 +24,6 @@ footer {
     margin-top: 50px;
 }
 
-@media screen and (max-width: 480px) {
-    .worship-left-col {
-        border-bottom: 2px solid gray
-    }
-
-    .worship-right-col {
-        border-top: 2px solid gray
-    }
-}
-
-@media screen and (min-width: 481px) {
-    .worship-left-col {
-        border-right: 2px solid gray
-    }
-
-    .worship-right-col {
-        border-left: 2px solid gray
-    }
-}
 
 /* staff && photos page */
 .image-card {

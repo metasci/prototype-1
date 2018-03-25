@@ -1,8 +1,20 @@
 {{#extend "styles"}}
     <style>
         .worship-docs {
-            background-color: blue; 
+            {{!-- background-color: blue;  --}}
             text-align: center;
+        }
+
+        .no-bullets {
+            list-style-type: none;
+        }
+
+        .dark-text {
+            color: #333333;
+        }
+
+        .padded {
+            padding: 10px;
         }
     </style>
 {{/extend}}
@@ -23,7 +35,6 @@
         <div class="container worship-docs">
             <div class="row">
                 <div class="col">
-                    
                     <h3 class="worship-label">Weekly Worship Bulletin</h3>
                     <a href="{{docs.bulletin}}" class="button icon fa-download" target="_blank">Download PDF</a>
                 </div>
@@ -35,48 +46,64 @@
                     <h3 class="worship-label">Newsletter</h3>
                     <a href="{{docs.newsletter}}" class="button icon fa-download" target="_blank">Download PDF</a>
                 </div>
+            </div>       
+        </div>
+    </div>
+</section>
+
+<section class="wrapper style1">
+    <div class="inner">
+        <div class="row">
+            <div class="container worship-docs">
+            <div class="col">
+                <h3>Service Times:</h3>
+                <ul class="no-bullets">
+                    {{#each service.times}}
+                        <li>{{this}}</li>
+                    {{/each}}
+                </ul>
+                <div class="card dark-text padded">
+                        {{service.description}}
+                </div>
+                {{!-- <h3 class="worship-label">Christian Education</h3>
+                <ul>
+                    <li>sunday school</li>
+                    <li>bible study</li>
+                </ul> --}}
             </div>
-            <div class="row">
-                <div class="col worship-left-col">
+            </div>
+        </div>
+    </div>
+</section>
 
-                    <h3 class="worship-label">Communion Times:</h3>
-                    <ul>
-                        {{#each times.communion}}
-                            <li>{{this}}</li>
-                        {{/each}}
-                    </ul>
-
-                    <h3 class="worship-label">Service Times:</h3>
-                    <ul>
-                        {{#each times.service}}
-                            <li>{{this}}</li>
-                        {{/each}}
-                    </ul>
-
-                    <h3 class="worship-label">Christian Education</h3>
-                    <ul>
-                        <li>sunday school</li>
-                        <li>bible study</li>
-                    </ul>
-
-                </div>
-
+<section class="wrapper">
+    <div class="inner">
+        <div class="row">
+            <div class="container">
                 
-                <div class="col worship-right-col">
+                <h3>Christian Education:</h3>
+                <div id="accordion">
 
+                    {{#each christedu}}
+
+                        <div class="card dark-text">
+                            <div class="card-header" id="heading{{@index}}">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapse{{@index}}" aria-expanded="true" aria-controls="collapse{{@index}}">
+                                {{@key}}
+                                </button>
+                            </h5>
+                            </div>
+
+                            <div id="collapse{{@index}}" class="collapse" aria-labelledby="heading{{@index}}" data-parent="#accordion">
+                            <div class="card-body">
+                                {{this}}
+                            </div>
+                            </div>
+                        </div>
+
+                    {{/each}}
                     
-                    <h3 class="worship-label">Weekly Worship Bulletin</h3>
-                    <a href="{{docs.bulletin}}" class="button icon fa-download" target="_blank">Download PDF</a>
-
-
-                    <h3 class="worship-label">Refrigerator Page</h3>
-                    <a href="{{docs.refrigerator}}" class="button icon fa-download" target="_blank">Download PDF</a>
-                    
-                    <h3 class="worship-label">Newsletter</h3>
-                    <a href="{{docs.newsletter}}" class="button icon fa-download" target="_blank">Download PDF</a>
-
-                    <h3 class="worship-label">Music</h3>
-
                 </div>
 
             </div>
