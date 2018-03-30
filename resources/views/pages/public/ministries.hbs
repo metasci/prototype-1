@@ -6,7 +6,9 @@
             <h1>Ministries</h1>
             <p>Feugiat adipiscing nisl amet</p>
         </header>
-        <a href="#" class="image main"><img src="images/pic07.jpg" alt="" /></a>
+        <a href="#" class="image main">
+            <img src="images/pic07.jpg" alt="" />
+        </a>
         
         <div class="container">
             <div id="accordion">
@@ -15,17 +17,17 @@
 
                     <div class="card">
                         <div class="card-header" id="heading{{@index}}">
-                        <h5 class="mb-0">
-                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapse{{@index}}" aria-expanded="true" aria-controls="collapse{{@index}}">
-                            {{@key}}
-                            </button>
-                        </h5>
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapse{{@index}}" aria-expanded="true" aria-controls="collapse{{@index}}">
+                                    {{@key}}
+                                </button>
+                            </h5>
                         </div>
 
                         <div id="collapse{{@index}}" class="collapse" aria-labelledby="heading{{@index}}" data-parent="#accordion">
-                        <div class="card-body">
-                            {{this}}
-                        </div>
+                            <div class="card-body">
+                                {{this}}
+                            </div>
                         </div>
                     </div>
 
