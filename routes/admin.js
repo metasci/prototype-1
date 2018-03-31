@@ -62,6 +62,7 @@ router.get('/account', Controller.AdminAccount.index);
 
 router.get('/music', Controller.Music.index);
 router.post('/music', Controller.Music.create);
+router.post('/music/delete', Controller.Music.destroy);
 
 
 module.exports = router;

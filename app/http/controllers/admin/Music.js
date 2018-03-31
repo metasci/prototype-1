@@ -26,5 +26,14 @@ module.exports = {
         console.log(newMusicItem);
         
 		res.sendStatus(200);
+	},
+	
+
+	destroy: (req, res, next) => {
+		console.log(req.body.title);
+
+		// delete ministry by title
+
+		res.sendStatus(200);
 	}
 }
