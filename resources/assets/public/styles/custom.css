@@ -16,15 +16,11 @@ footer {
 }
 
 /* worship page */
-.worship-label {
-    margin-top: 50px;
-}
+.worship-label { margin-top: 50px; }
 
 
 /* staff && photos page */
-.image-card {
-    margin-bottom: 15px;
-}
+.image-card { margin-bottom: 15px; }
 
 
 /*
@@ -35,19 +31,17 @@ footer {
     padding: 0;
     list-style-type: none;
 }
-.no-bullets li {
-    padding: 0;
-}
+.no-bullets li { padding: 0; }
 
-.dark-text {
-    color: #333333;
-}
+.dark-text { color: #333333; }
 
-.padded {
-    padding: 10px;
-}
+.padded { padding: 10px; }
 
 .scrollbox {
     max-height: 300px;
     overflow: scroll;
 }
+
+.border-top-dark { border-top: 4px solid grey; }
+
+.topmargin { margin-top: 20px; }

@@ -17,24 +17,14 @@
 				<span class="image fit portrait"><img src="images/ajustworldlogo.png" alt="" /></span>
 			</section>
 			<section>
-				<h2>Mission Statement</h2>
-				<div class="features">
-					<article class="icon fa-diamond">
-						<h3>Sed veroeros</h3>
-						<p>Lorem ipsum dolor sit amet nulla etiam feugiat sed adipiscing.</p>
-					</article>
-					<article class="icon fa-file-o">
-						<h3>Magna etiam</h3>
-						<p>Lorem ipsum dolor sit amet nulla etiam feugiat sed adipiscing.</p>
-					</article>
-					<article class="icon fa-clone">
-						<h3>Nulla consequat</h3>
-						<p>Lorem ipsum dolor sit amet nulla etiam feugiat sed adipiscing.</p>
-					</article>
-					<article class="icon fa-envelope-o">
-						<h3>Euismod morbi</h3>
-						<p>Lorem ipsum dolor sit amet nulla etiam feugiat sed adipiscing.</p>
-					</article>
+				<div class="container">
+					<h2>Mission Statement</h2>
+					<h3>{{mission}}</h3>
+				</div>
+				<div class="container border-top-dark padded">
+					<div class="jumbotron topmargin">
+						{{{annualQuote}}}
+					</div>
 				</div>
 			</section>
 		</div>
@@ -43,26 +33,21 @@
 
 <!-- Two -->
 <section id="two" class="wrapper style1 special">
-	<div class="inner">
-		<div class="stats">
-			<article>
-				<h3><span>128</span> Sed magna</h3>
-				<p>Lorem ipsum dolor nulla feugiat adipiscing.</p>
-			</article>
-			<article>
-				<h3><span>640</span> Etiam dolor</h3>
-				<p>Lorem ipsum dolor nulla feugiat adipiscing.</p>
-			</article>
-			<article>
-				<h3><span>256</span> Nullam amet</h3>
-				<p>Lorem ipsum dolor nulla feugiat adipiscing.</p>
-			</article>
-			<article>
-				<h3><span>768</span> Sit euismod</h3>
-				<p>Lorem ipsum dolor nulla feugiat adipiscing.</p>
-			</article>
+	
+		<div class="row">
+			<div class="col">
+				<h3>Newsletter</h3>
+				<a href="{{newsletter}}" class="button icon fa-download" target="_blank">Download PDF</a>
+			</div>
+			<div class="col">
+				<h3>Listen to the latest service!</h3>
+				<audio controls>
+					<source src="{{audio}}" type="audio/mpeg">
+					Your browser does not support the audio element.
+				</audio>			
+			</div>
 		</div>
-	</div>
+	
 </section>
 
 <!-- Three -->
@@ -100,7 +85,7 @@
 	</article>
 	<article class="icon fa-quote-left">
 		<span class="image"><img src="images/pic04.jpg" alt="" data-position="left" /></span>
-		<h2>"Nam velit et lorem porta quis at pulvinar tellus nibh"</h2>
+		<h2>"{{pastorQuote}}"</h2>
 		<div class="author">
 			<span class="name">Pastor Diane White</span>
 		</div>

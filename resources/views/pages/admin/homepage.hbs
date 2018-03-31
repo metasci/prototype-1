@@ -1,8 +1,15 @@
+{{#extend "styles"}}
+    <link href="https://cdn.quilljs.com/1.3.5/quill.snow.css" rel="stylesheet">
+{{/extend}}
+
 
 <div class="container">
+    <h2>Homepage</h2>
+</div>
 
-    <h2>Highlights</h2>
+<div class="container topmargin border-top-dark">
 
+    <h4 class="topmargin">Highlights</h4>
     <div class="scrollbox">
         <table class="table table-striped">
             <thead>
@@ -19,7 +26,10 @@
                         <td>{{this.date}}</td>
                         <td>{{this.time}}</td>
                         <td>{{this.description}}</td>
-                        <td><button class="btn btn-danger">delete</button></td>
+                        <td>
+                            <button class="btn btn-danger delete">delete</button>
+                            <span class="hide id">{{this.id}}</span>
+                        </td>
                     </tr>
                 {{/each}}
             </tbody>
@@ -27,9 +37,9 @@
     </div>
 
     {{!-- add new highlight --}}
-    <div class="container topmargin border padding">
-        <h4>Add a new highlight</h4>
-        <form class="" action="/admin/homepage" method="post">
+    <div class="jumbotron topmargin">
+        <h6>Add a new highlight</h6>
+        <form class="" action="/admin/homepage/addhighlight" method="post">
             <div class="form-group">
                 <label for="highlightdate">Date</label>
                 <input name="date" type="date" class="form-control" id="highlightdate">
@@ -44,5 +54,73 @@
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
-    
 </div>
+
+<div class="container topmargin border-top-dark">
+    <div class="jumbotron topmargin">
+        <h4>Update Church Mission Statement</h4>
+        <form class="form" action="/admin/homepage/missionstatement" method="post">
+            <input class="form-control" type="text" name="mission" value="{{mission}}">
+            <button type="submit" class="btn btn-primary topmargin">Submit</button>
+        </form>
+    </div>
+</div>
+
+<div class="container topmargin border-top-dark">
+    <div class="jumbotron topmargin">
+        <h4>Update Quote from Pastor</h4>
+        <form class="form" action="/admin/homepage/pastorquote" method="post">
+            <input class="form-control" type="text" name="quote" value="{{pastorQuote}}">
+            <button type="submit" class="btn btn-primary topmargin">Submit</button>
+        </form>
+    </div>
+</div>
+
+<div class="container topmargin border-top-dark padding">
+    <h4>Annual Message</h4>
+    <div class="container border padding topmargin" id="annual">
+        <form onsubmit="return updateAnnualMsg(event);">
+            <h6>Edit Annual Message</h6>
+            <div id="editor">
+                {{!-- inject db info here --}}
+                {{{annualMsg}}}
+            </div>
+            <button type="submit" class="btn btn-primary topmargin">Submit</button>
+        </form>
+    </div>
+</div>
+
+{{#extend "scripts"}}
+    <!-- Include the Quill library -->
+    <script src="https://cdn.quilljs.com/1.3.5/quill.js"></script>
+    <script>
+        // Initialize Quill editor
+        var quill2 = new Quill('#editor', {
+            theme: 'snow'
+        });
+
+        function updateAnnualMsg(event){
+            event.preventDefault();
+            
+            const data = {};
+            data.description = encodeURI($('#annual #editor .ql-editor').html());
+
+            $.post('/admin/homepage/updateannual', data, function(data, status){
+    
+                location.reload();
+            });
+
+            return false;
+        }
+
+        $('.delete').on('click',function(){
+            
+            let data = {};
+            data.id = $(this).siblings('.id').html().trim(); 
+            
+            $.post('/admin/homepage/deletehighlight', data, function(data, status){
+                location.reload();
+            });
+        });
+    </script>
+{{/extend}}
