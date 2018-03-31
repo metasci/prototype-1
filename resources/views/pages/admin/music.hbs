@@ -4,9 +4,9 @@
 
 
 <div class="container">
-    <h2>Ministries</h2>
+    <h2>Music</h2>
     <div id="accordion">
-        {{#each ministry}}
+        {{#each musicItem}}
 
             <div class="card">
                 <div class="card-header" id="heading{{@index}}">
@@ -30,14 +30,14 @@
 
     {{!-- add new ministries --}}
     <div class="container topmargin border padding">
-        <h6>Add a new ministry</h6>
-        <form onsubmit="return newMinistry(event);">
+        <h6>Add a new music item</h6>
+        <form onsubmit="return newMusicItem(event);">
             <div class="form-group">
-                <label for="ministrytitle">Title</label>
-                <input id="ministrytitle" type="title" class="form-control" id="ministrytitle" placeholder="Enter Title">
+                <label for="musictitle">Title</label>
+                <input id="musictitle" type="title" class="form-control" id="musictitle" placeholder="Enter Title">
             </div>
             <div id="editor">
-                <p>enter new ministry description here</p>
+                <p>enter new music item here</p>
             </div>
             <button type="submit" class="btn btn-primary topmargin">Submit</button>
         </form>
@@ -55,14 +55,14 @@
             theme: 'snow'
         });
 
-        function newMinistry(event){
+        function newMusicItem(event){
             event.preventDefault();
             
             const data = {};
-            data.title = $('#ministrytitle').val();
+            data.title = $('#musictitle').val();
             data.description = encodeURI($('#editor .ql-editor').html());
 
-            $.post('/admin/ministries', data, function(data, status){
+            $.post('/admin/music', data, function(data, status){
     
                 location.reload();
             });

@@ -54,6 +54,9 @@ router.get('/newsletter', Controller.Newsletter.index);
 
 router.get('/account', Controller.AdminAccount.index);
 
+router.get('/music', Controller.Music.index);
+router.post('/music', Controller.Music.create);
+
 
 module.exports = router;
 

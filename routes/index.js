@@ -28,6 +28,8 @@ router.get('/contact', Controller.Contact.index);
 
 router.get('/staff', Controller.Staff.index);
 
+router.get('/music', Controller.Music.index);
+
 
 // db access example
 router.get('/db', (req, res)=>{
