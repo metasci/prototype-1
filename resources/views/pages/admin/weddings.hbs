@@ -5,39 +5,16 @@
 
 <div class="container">
     <h2>Weddings</h2>
-    <div id="accordion">
-        {{#each weddings}}
-
-            <div class="card">
-                <div class="card-header" id="heading{{@index}}">
-                    <h5 class="mb-0">
-                        <button class="btn btn-info" data-toggle="collapse" data-target="#collapse{{@index}}" aria-expanded="true" aria-controls="collapse{{@index}}">
-                        {{@key}}
-                        </button>
-                        <button class="btn btn-danger">delete</button>
-                    </h5>
-                </div>
-
-                <div id="collapse{{@index}}" class="collapse" aria-labelledby="heading{{@index}}" data-parent="#accordion">
-                    <div class="card-body">
-                        {{this}}
-                    </div>
-                </div>
-            </div>
-
-        {{/each}}
+    <div class="jumbotron">
+        {{{weddings}}}
     </div>
 
     {{!-- add new rentals --}}
     <div class="container topmargin border padding">
-        <h4>Add a new rental</h4>
+        <h6>Update Wedding Information</h6>
         <form onsubmit="return newRental(event);">
-            <div class="form-group">
-                <label for="rentaltitle">Title</label>
-                <input id="rentaltitle" type="title" class="form-control" id="rentaltitle" placeholder="Enter Title">
-            </div>
             <div id="editor">
-                <p>enter new rental description here</p>
+                <p>enter new wedding information here</p>
             </div>
             <button type="submit" class="btn btn-primary topmargin">Submit</button>
         </form>
@@ -59,10 +36,9 @@
             event.preventDefault();
             
             const data = {};
-            data.title = $('#rentaltitle').val();
             data.description = encodeURI($('#editor .ql-editor').html());
 
-            $.post('/admin/rentals', data, function(data, status){
+            $.post('/admin/weddings', data, function(data, status){
                 location.reload();
             });
 
