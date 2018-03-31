@@ -39,6 +39,7 @@ router.post('/ministries/delete', Controller.Ministries.destroy);
 
 
 router.get('/about', Controller.About.index);
+router.post('/about', Controller.About.create);
 
 router.get('/photos', Controller.Photos.index);
 

@@ -11,7 +11,7 @@ module.exports = {
 	
 	/**
 	 * respond to post
-	 * add new rental to database
+	 * add new wedding info to database
 	 */
 	create: (req, res, next) => {
 		let newWeddingDesc = req.body.description;
