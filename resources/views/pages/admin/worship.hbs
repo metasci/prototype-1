@@ -1,0 +1,193 @@
+{{#extend "styles"}}
+    <link href="https://cdn.quilljs.com/1.3.5/quill.snow.css" rel="stylesheet">
+{{/extend}}
+
+<div class="container">
+    <h2>Worship</h2>
+</div>
+
+<div class="container topmargin border-top-dark">
+    <div class="container text-center">
+            <form action="/admin/worship/files" method="POST">
+                <div class="row">
+                
+                    <div class="col">
+                        <h6 class="topmargin">Weekly Worship Bulletin</h6>
+                        <input class="hide fileinput" type="file" name="bulletin">
+                        <button type="button" class="btn btn-outline-dark filebtn"><span data-feather="upload"></span> Upload PDF</button>
+                        <p class="filelabel topmargin"></p>
+                    </div>
+                    <div class="col">
+                        <h6 class="topmargin">Refrigerator Page</h6>
+                        <input class="hide fileinput" type="file" name="fridge">
+                        <button type="button" class="btn btn-outline-dark filebtn"><span data-feather="upload"></span> Upload PDF</button>
+                        <p class="filelabel topmargin"></p>
+                    </div>
+                    <div class="col">
+                        <h6 class="topmargin">Newsletter</h6>
+                        <input class="hide fileinput" type="file" name="news">
+                        <button type="button" class="btn btn-outline-dark filebtn"><span data-feather="upload"></span> Upload PDF</button>
+                        <p class="filelabel topmargin"></p>
+                    </div>
+                
+                </div>
+                <div class="row topmargin">
+                    <div class="col">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </form>       
+        </div>
+</div>
+
+<div class="container topmargin border-top-dark">
+    <div class="topmargin">
+        <h4>Service</h4>
+    </div>
+    {{!-- edit service description --}}
+    <div class="container border padding">
+        <h6>Edit Service Times</h6>
+        <ul class="list-group">
+            {{#each service.times as |time|}}
+                <li class="list-group-item">
+                    {{time.info}}
+                    <button class="btn btn-danger float-right delete-servicetime" type="button">delete</button>
+                    <span class="hide">{{time.id}}</span>
+                </li>
+            {{/each}}
+        </ul>
+        <form action="/admin/worship/addservicetime" method="post" class="topmargin">
+            <h6>Add new time</h6>
+            <input type="text" class="form-control" name="time">
+            <button type="submit" class="btn btn-primary topmargin">Submit</button>
+        </form>
+    </div>
+
+    <div class="container border padding topmargin" id="service">
+        <form onsubmit="return updateServiceDesc(event);">
+            <h6>Edit Service Description</h6>
+            <div id="editor1">
+                {{!-- inject db info here --}}
+                {{{service.description}}}
+            </div>
+            <button type="submit" class="btn btn-primary topmargin">Submit</button>
+        </form>
+    </div>
+</div>
+
+<div class="container topmargin border-top-dark">
+    <div class="topmargin">
+        <h4>Christian Education</h4>
+    </div>
+    <div id="accordion" class="">
+        {{#each christedu}}
+
+            <div class="card">
+
+                <div class="card-header" id="heading{{@index}}">
+                    <h5 class="mb-0">
+                        <button class="btn btn-info" data-toggle="collapse" data-target="#collapse{{@index}}" aria-expanded="true" aria-controls="collapse{{@index}}">
+                        {{@key}}
+                        </button>
+                        
+                        <button class="btn btn-danger float-right delete-christedu">delete</button>
+                    </h5>
+                </div>
+                <div id="collapse{{@index}}" class="collapse" aria-labelledby="heading{{@index}}" data-parent="#accordion">
+                    <div class="card-body">
+                        {{{this}}}
+                    </div>
+                </div>
+
+            </div>
+
+        {{/each}}
+    </div>
+
+    {{!-- add new christian education --}}
+    <div class="container topmargin border padding" id="christedu">
+        <h6>Add new Christian Education group</h6>
+        <form onsubmit="return newChristEDU(event);">
+            <div class="form-group">
+                <label for="christedutitle">Title</label>
+                <input id="christedutitle" type="title" class="form-control" id="christedutitle" placeholder="Enter Title">
+            </div>
+            <div id="editor2">
+                <p>enter new Christian Education description here</p>
+            </div>
+            <button type="submit" class="btn btn-primary topmargin">Submit</button>
+        </form>
+    </div>
+
+
+</div>
+
+{{#extend "scripts"}}
+    <!-- Include the Quill library -->
+    <script src="https://cdn.quilljs.com/1.3.5/quill.js"></script>
+    <script>
+        // Initialize Quill editor
+        var quill1 = new Quill('#editor1', {
+            theme: 'snow'
+        });
+
+        var quill2 = new Quill('#editor2', {
+            theme: 'snow'
+        });
+
+        function updateServiceDesc(event){
+            event.preventDefault();
+            
+            const data = {};
+            data.description = encodeURI($('#service #editor1 .ql-editor').html());
+
+            $.post('/admin/worship/servicedescription', data, function(data, status){
+    
+                location.reload();
+            });
+
+            return false;
+        }
+
+        function newChristEDU(event){
+            event.preventDefault();
+            
+            let data = {};
+            data.title = $('#christedutitle').val();
+            data.description = encodeURI($('#christedu #editor2 .ql-editor').html());
+
+            $.post('/admin/worship/newchristedu', data, function(data, status){
+    
+                location.reload();
+            });
+
+            return false;
+        }
+
+        $('.delete-christedu').on('click',function(){
+            let data = {};
+            data.title = $(this).siblings('.btn-info').html().trim(); 
+            //console.log();
+            $.post('/admin/worship/deletechristedu', data, function(data, status){
+                location.reload();
+            });
+        });
+
+        $('.delete-servicetime').on('click',function(){
+            let data = {};
+            data.id = $(this).siblings('span').html().trim();
+            //console.log();
+            $.post('/admin/worship/deleteservicetime', data, function(data, status){
+                location.reload();
+            });
+        });
+
+
+        $('.filebtn').on('click', function(){
+            $(this).siblings('.fileinput').click();
+        });
+        $('.fileinput').on('change',function(){
+            $(this).siblings('.filelabel').html($(this).val());
+        });
+    </script>
+{{/extend}}

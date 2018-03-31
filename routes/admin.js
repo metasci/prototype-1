@@ -21,8 +21,6 @@ const Middleware = require('../app/http/middleware'); // redirect to login page
 router.use('/', Middleware.Auth.isAuthenticated);
 
 
-
-
 router.get('/', Controller.MainDash.index);
 
 router.get('/login', Controller.Login.index);
@@ -39,6 +37,13 @@ router.get('/about', Controller.About.index);
 router.get('/photos', Controller.Photos.index);
 
 router.get('/worship', Controller.Worship.index);
+router.post('/worship/newchristedu', Controller.Worship.createChristEdu);
+router.post('/worship/deletechristedu', Controller.Worship.deleteChristEdu);
+router.post('/worship/servicedescription', Controller.Worship.createServiceDesc);
+router.post('/worship/addservicetime', Controller.Worship.addTime);
+router.post('/worship/deleteservicetime', Controller.Worship.deleteTime);
+router.post('/worship/files', Controller.Worship.upload);
+
 
 router.get('/weddings', Controller.Weddings.index);
 router.post('/weddings', Controller.Weddings.create);

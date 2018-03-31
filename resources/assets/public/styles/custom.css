@@ -8,10 +8,6 @@
     display: none;
 }
 
-.scrollbox {
-    max-height: 300px;
-    overflow: scroll;
-}
 footer {
     box-shadow: 0 50vh 0 50vh #052e5c;
 }
@@ -28,4 +24,30 @@ footer {
 /* staff && photos page */
 .image-card {
     margin-bottom: 15px;
+}
+
+
+/*
+ * Utilities
+ */
+
+.no-bullets {
+    padding: 0;
+    list-style-type: none;
+}
+.no-bullets li {
+    padding: 0;
+}
+
+.dark-text {
+    color: #333333;
+}
+
+.padded {
+    padding: 10px;
+}
+
+.scrollbox {
+    max-height: 300px;
+    overflow: scroll;
 }

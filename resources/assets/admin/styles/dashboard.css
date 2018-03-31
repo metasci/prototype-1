@@ -57,8 +57,8 @@ body {
 }
 
 /*
-  * Navbar
-  */
+ * Navbar
+ */
 
 .navbar-brand {
   padding-top: .75rem;
@@ -91,6 +91,16 @@ body {
 
 .border-top { border-top: 1px solid #e5e5e5; }
 .border-bottom { border-bottom: 1px solid #e5e5e5; }
+.border-top-dark { border-top: 4px solid grey; }
+.border-bottom-dark { border-bottom: 4px solid grey; }
+
+.no-bullets {
+  padding: 0;
+  list-style-type: none;
+}
+.no-bullets li {
+  padding: 0;
+}
 
 .scrollbox {
     max-height: 300px;
@@ -104,6 +114,9 @@ body {
   padding: 20px;
 }
 
+.hide {
+  display: none;
+}
 
 @media screen and (max-width: 767px) {
   .gt-md {
