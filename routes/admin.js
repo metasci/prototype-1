@@ -35,6 +35,7 @@ router.post('/homepage/deletehighlight', Controller.Homepage.deleteHighlight);
 
 router.get('/ministries', Controller.Ministries.index);
 router.post('/ministries', Controller.Ministries.create);
+router.post('/ministries/delete', Controller.Ministries.destroy);
 
 
 router.get('/about', Controller.About.index);

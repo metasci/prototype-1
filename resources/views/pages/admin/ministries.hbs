@@ -14,7 +14,7 @@
                         <button class="btn btn-info" data-toggle="collapse" data-target="#collapse{{@index}}" aria-expanded="true" aria-controls="collapse{{@index}}">
                         {{@key}}
                         </button>
-                        <button class="btn btn-danger">delete</button>
+                        <button class="btn btn-danger float-right delete">delete</button>
                     </h5>
                 </div>
 
@@ -69,5 +69,14 @@
 
             return false;
         }
+
+        $('.delete').on('click',function(){
+            let data = {};
+            data.title = $(this).siblings('.btn-info').html().trim(); 
+           
+            $.post('/admin/ministries/delete', data, function(data, status){
+                location.reload();
+            });
+        });
     </script>
 {{/extend}}

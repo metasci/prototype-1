@@ -24,6 +24,16 @@ module.exports = {
 		}
 		// add new ministry to database here
 
+		console.log(newMinistry);
+
+		res.sendStatus(200);
+	},
+
+	destroy: (req, res, next) => {
+		console.log(req.body.title);
+
+		// delete ministry by title
+
 		res.sendStatus(200);
 	}
 }
