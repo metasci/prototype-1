@@ -1,7 +1,7 @@
 const express       = require('express');
 const router        = express.Router();
 const Controller    = require('../app/http/controllers').public;
-const models        = require('../database/models');
+
 
 	   
 
