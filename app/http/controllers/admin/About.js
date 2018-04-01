@@ -13,7 +13,7 @@ module.exports = {
 
 		console.log(newAbout);
 		// add new about info to database here
-		
+		// 
 		res.sendStatus(200);
 	}
 }

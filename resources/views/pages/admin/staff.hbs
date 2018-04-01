@@ -1,0 +1,69 @@
+<div class="container">
+    <h2>Staff</h2>
+</div>
+
+<div class="container topmargin border-top-dark padding">
+    <div class="jumbotron topmargin">
+        <h6>Add a new staff member</h6>
+        <form class="" action="/admin/staff" method="post">
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Upload</span>
+                    </div>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="staffimage" name="image">
+                        <label class="custom-file-label" for="staffimage" id="staffimagetitle">Choose Photo</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <input name="name" type="text" class="form-control" id="staffname" placeholder="Enter staff name">
+            </div>
+            <div class="form-group">
+                <input name="title" type="text" class="form-control" id="stafftitle" placeholder="Enter staff title">
+            </div>
+            <div class="form-group">
+                <input name="description" type="text" class="form-control" id="staffdescription" placeholder="Enter staff description">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+
+<div class="container topmargin border-top-dark padding">
+    <div class="row">
+        {{#each staff}}
+            <div class="col image-card">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="/images/diane.jpg" alt="Card image cap" async>
+                    <div class="card-body">
+                        <span class="hide id">{{this.id}}</span>
+                        <h5 class="card-title">{{this.name}}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{this.title}}</h6>
+                        <p class="card-text">{{this.description}}</p>
+                        <button type="button" class="btn btn-danger delete">delete</button>
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</div>
+
+
+{{#extend "scripts"}}
+<script>
+    $('.delete').on('click',function(){
+        let data = {};
+        data.id = $(this).siblings('.id').html().trim(); 
+        
+        $.post('/admin/staff/delete', data, function(data, status){
+            location.reload();
+        });
+    });
+
+    $('#staffimage').on('change', function(){
+        $('#staffimagetitle').html($(this).val());
+    });
+</script>
+{{/extend}}

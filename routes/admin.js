@@ -56,6 +56,8 @@ router.get('/weddings', Controller.Weddings.index);
 router.post('/weddings', Controller.Weddings.create);
 
 router.get('/staff', Controller.Staff.index);
+router.post('/staff', Controller.Staff.create);
+router.post('/staff/delete', Controller.Staff.destroy);
 
 router.get('/newsletter', Controller.Newsletter.index);
 
