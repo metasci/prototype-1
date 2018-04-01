@@ -23,7 +23,6 @@ router.use('/', Middleware.Auth.isAuthenticated);
 
 router.get('/', Controller.MainDash.index);
 
-router.get('/login', Controller.Login.index);
 
 router.get('/homepage', Controller.Homepage.index);
 router.post('/homepage/addhighlight', Controller.Homepage.addHighlight);
@@ -71,6 +70,7 @@ router.get('/music', Controller.Music.index);
 router.post('/music', Controller.Music.create);
 router.post('/music/delete', Controller.Music.destroy);
 
+router.get('*', Controller.MainDash.index);
 
 module.exports = router;
 
