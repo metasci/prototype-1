@@ -14,6 +14,10 @@ const Middleware = require('../app/http/middleware'); // redirect to login page
 
 
 
+
+router.get('/login', Controller.Login.index);
+router.post('/login', Controller.Login.login);
+
 /*
  * Assign middleware for routes in this file
  */

@@ -12,8 +12,6 @@ const models        = require('../database/models');
 // GET home page.
 router.get('/', Controller.Homepage.index);
 
-router.get('/login', Controller.Login.index);
-router.post('/login', Controller.Login.login);
 
 router.get('/calendar', Controller.Calendar.index);
 

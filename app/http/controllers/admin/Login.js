@@ -2,7 +2,7 @@
 module.exports = {
 	
 	index: (req, res, next) => {
-	  res.render('pages/public/login', {layout:'loginLayout'});
+	  res.render('pages/admin/login', {layout:'loginLayout'});
 	},
 
 	login: (req, res, next) => {

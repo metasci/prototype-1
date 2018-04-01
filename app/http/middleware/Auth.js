@@ -4,6 +4,12 @@ module.exports = {
             
             // add code here
             res.locals.layout = 'adminLayout';
-            next();
+            
+            // if logged in allow passage
+            if(true){
+                next();
+            } else{
+                res.redirect('/');
+            }
         }
 }
