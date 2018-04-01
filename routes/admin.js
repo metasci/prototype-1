@@ -42,6 +42,8 @@ router.get('/about', Controller.About.index);
 router.post('/about', Controller.About.create);
 
 router.get('/photos', Controller.Photos.index);
+router.post('/photos', Controller.Photos.create);
+router.post('/photos/delete', Controller.Photos.destroy);
 
 router.get('/worship', Controller.Worship.index);
 router.post('/worship/newchristedu', Controller.Worship.createChristEdu);
