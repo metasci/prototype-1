@@ -65,6 +65,7 @@ router.get('/files', Controller.Files.index);
 router.post('/files', Controller.Files.upload);
 
 router.get('/account', Controller.AdminAccount.index);
+router.post('/account', Controller.AdminAccount.update);
 
 router.get('/music', Controller.Music.index);
 router.post('/music', Controller.Music.create);

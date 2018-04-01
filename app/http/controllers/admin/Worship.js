@@ -61,13 +61,5 @@ module.exports = {
 	deleteTime: (req, res, next) => {
 		console.log(req.body.id);
 		res.sendStatus(200);
-	},
-
-	/**
-	 * File uploads
-	 */
-	upload: (req, res, next) => {
-		console.log(req.body);
-		res.redirect('/admin/worship');
 	}
 }

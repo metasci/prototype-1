@@ -5,8 +5,12 @@ module.exports = {
 	  res.render('pages/admin/account');
 	},
 
-	/*
-	 * here only for unit example test
-	 */
-	alwaysTrue: () => true 
+	update: (req, res, next) => {
+
+		let passwd = req.body.passwd;
+
+		console.log(passwd);
+
+		res.redirect('/admin/account');
+	}
 }
