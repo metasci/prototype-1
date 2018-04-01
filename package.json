@@ -8,7 +8,8 @@
     "test": "mocha ./test/unit/**/*.test.js || true",
     "integration": "mocha ./test/integration/**/*.test.js || true",
     "coverage": "istanbul cover _mocha ./test/**/*.test.js -x *.test.js",
-    "showcoverage": "chromium coverage/lcov-report/index.html"
+    "showcoverage": "chromium coverage/lcov-report/index.html",
+    "sqlz": "node_modules/.bin/sequelize"
   },
   "dependencies": {
     "app-root-path": "^2.0.1",
