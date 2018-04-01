@@ -51,7 +51,7 @@ router.post('/worship/deletechristedu', Controller.Worship.deleteChristEdu);
 router.post('/worship/servicedescription', Controller.Worship.createServiceDesc);
 router.post('/worship/addservicetime', Controller.Worship.addTime);
 router.post('/worship/deleteservicetime', Controller.Worship.deleteTime);
-router.post('/worship/files', Controller.Worship.upload);
+
 
 
 router.get('/weddings', Controller.Weddings.index);
@@ -61,7 +61,8 @@ router.get('/staff', Controller.Staff.index);
 router.post('/staff', Controller.Staff.create);
 router.post('/staff/delete', Controller.Staff.destroy);
 
-router.get('/newsletter', Controller.Newsletter.index);
+router.get('/files', Controller.Files.index);
+router.post('/files', Controller.Files.upload);
 
 router.get('/account', Controller.AdminAccount.index);
 
