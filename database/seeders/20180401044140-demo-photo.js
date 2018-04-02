@@ -5,27 +5,27 @@ module.exports = {
     
     return queryInterface.bulkInsert('Photos', [
         {
-          photo: "/storage/images/photos/diane.jpg",
+          photo: "diane.jpg",
           description: "Some quick example text to build on the card title and make up the bulk of the card's content."
         },
         {
-          photo: "/storage/images/photos/diane.jpg",
+          photo: "diane.jpg",
           description: "Some quick example text to build on the card title and make up the bulk of the card's content."
         },
         {
-          photo: "/storage/images/photos/diane.jpg",
+          photo: "diane.jpg",
           description: "Some quick example text to build on the card title and make up the bulk of the card's content."
         },
         {
-          photo: "/storage/images/photos/diane.jpg",
+          photo: "diane.jpg",
           description: "Some quick example text to build on the card title and make up the bulk of the card's content."
         },
         {
-          photo: "/storage/images/photos/diane.jpg",
+          photo: "diane.jpg",
           description: "Some quick example text to build on the card title and make up the bulk of the card's content."
         },
         {
-          photo: "/storage/images/photos/diane.jpg",
+          photo: "diane.jpg",
           description: "Some quick example text to build on the card title and make up the bulk of the card's content."
         }
       ], {});

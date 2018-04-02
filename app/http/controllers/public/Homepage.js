@@ -11,10 +11,9 @@ module.exports = {
 
 		res.locals.headerClass = 'alt';		
 
-		// figure out how to save these on res
 		models.Highlight.findAll({attributes: ['date','time','description']}).then( results => {
 
-			highlights = [];
+			let highlights = [];
 			results.forEach(item => {
 				highlights.push(item.get())
 			});

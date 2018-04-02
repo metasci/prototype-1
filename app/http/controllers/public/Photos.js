@@ -1,14 +1,22 @@
+const root 		= require('app-root-path');
+const models 	= require(root + '/database/models');
 
 module.exports = {
 	
 	index: (req, res, next) => {
 		
-		res.locals.photos = [
-			{description: "Some quick example text to build on the card title and make up the bulk of the card's content."},
-			{description: "Some quick example text to build on the card title and make up the bulk of the card's content."},
-			{description: "Some quick example text to build on the card title and make up the bulk of the card's content."}
-		];
+		res.locals.photos = [];
 		
-		res.render('pages/public/photos');
+		models.Photo.findAll().then(results => {
+			results.forEach(item => {
+				let photo = {
+					photo: item.get().photo,
+					description: item.get().description
+				}
+				res.locals.photos.push(photo);
+			});
+		}).finally(()=>{
+			res.render('pages/public/photos');
+		});
 	}
 }

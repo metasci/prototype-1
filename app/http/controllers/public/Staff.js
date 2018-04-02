@@ -1,20 +1,24 @@
+const root 		= require('app-root-path');
+const models 	= require(root + '/database/models');
 
 module.exports = {
 	
 	index: (req, res, next) => {
 		
-		res.locals.staff = [
-			{name: "Diane White", title: "Pastor", description: "Some quick example text to build on the card title and make up the bulk of the card's content."},
-			{name: "Phyllis", title: "Worker Bee", description: "Some quick example text to build on the card title and make up the bulk of the card's content."},
-			{name: "Diane White", title: "Pastor", description: "Some quick example text to build on the card title and make up the bulk of the card's content."},
-			{name: "Phyllis", title: "Worker Bee", description: "Some quick example text to build on the card title and make up the bulk of the card's content."},
-			{name: "Diane White", title: "Pastor", description: "Some quick example text to build on the card title and make up the bulk of the card's content."},
-			{name: "Phyllis", title: "Worker Bee", description: "Some quick example text to build on the card title and make up the bulk of the card's content."},
-			{name: "Diane White", title: "Pastor", description: "Some quick example text to build on the card title and make up the bulk of the card's content."}
-		];
 
-		res.render('pages/public/staff');
-	
+		models.Staff.findAll().then(results => {
+			res.locals.staff = [];
+			results.forEach(item => {
+				let staff = {
+					photo: item.get().photo,
+					name: item.get().name,
+					title: item.get().title,
+					description: item.get().description
+				}
+				res.locals.staff.push(staff);
+			});
+		}).finally(()=>{
+			res.render('pages/public/staff');
+		});
 	}
-
 }
