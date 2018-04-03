@@ -2,7 +2,6 @@
 module.exports = (sequelize, DataTypes) => {
   var Highlight = sequelize.define('Highlight', {
     date: DataTypes.DATE,
-    time: DataTypes.TIME,
     description: DataTypes.TEXT
   }, {
     classMethods: {

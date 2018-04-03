@@ -1,6 +1,6 @@
 const root 		= require('app-root-path');
 const models 	= require(root + '/database/models');
-
+const sequelize = require('sequelize');
 
 
 
@@ -11,7 +11,16 @@ module.exports = {
 
 		res.locals.headerClass = 'alt';		
 
-		models.Highlight.findAll({attributes: ['date','time','description']}).then( results => {
+		let highlightQuery = {
+			attributes: ['id',
+						[sequelize.fn('date_format', sequelize.col('date'), '%m-%d-%Y'), 'date'],
+						[sequelize.fn('date_format', sequelize.col('date'), '%h:%i %p'), 'time'],
+						'description'
+					], 
+			order:[['date','ASC']]
+		};
+
+		models.Highlight.findAll(highlightQuery).then( results => {
 
 			let highlights = [];
 			results.forEach(item => {
@@ -28,7 +37,7 @@ module.exports = {
 
 			res.locals.mission = results.get().mission;
 			res.locals.pastorQuote = results.get().pastor_quote;
-			res.locals.annualQuote = decodeURI(results.get().annual_msg);
+			res.locals.annualMsg = decodeURI(results.get().annual_msg);
 			
 		}).then(function(){
 			res.render('pages/public/index');

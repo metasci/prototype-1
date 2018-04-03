@@ -11,9 +11,6 @@ module.exports = {
       date: {
         type: Sequelize.DATE
       },
-      time: {
-        type: Sequelize.TIME
-      },
       description: {
         type: Sequelize.TEXT
       },
