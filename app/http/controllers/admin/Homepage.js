@@ -49,28 +49,39 @@ module.exports = {
 	},
 
 	updateAnnual: (req, res, next) => {
-		console.log(req.body.description);
-
-		res.sendStatus(200);
+		// console.log(req.body.description);
+		models.Homepage.findOne().then(homepage =>{
+			homepage.update({annual_msg: req.body.description})
+				.then(()=>{
+					res.sendStatus(200);
+				});
+		});
 	},
 
 	updatePastorQuote: (req, res, next) => {
-		console.log(req.body.quote);
-
-		res.redirect('/admin/homepage');
+		models.Homepage.findOne().then(homepage =>{
+			homepage.update({pastor_quote: req.body.quote})
+				.then(()=>{
+					res.redirect('/admin/homepage');
+				});
+		});
 	},
 
 	updateMission: (req, res, next) => {
-		console.log(req.body.mission);
 
-		res.redirect('/admin/homepage');
+		models.Homepage.findOne().then(homepage =>{
+			homepage.update({mission: req.body.mission})
+				.then(()=>{
+					res.redirect('/admin/homepage');
+				});
+		});
 	},
 
 	deleteHighlight: (req, res, next) => {
-		// console.log(req.body.id);
 
 		models.Highlight.destroy({where: {id: req.body.id}})
-
-		res.redirect('/admin/homepage');
+			.then(()=>{
+				res.redirect('/admin/homepage');
+			});
 	}
 }
