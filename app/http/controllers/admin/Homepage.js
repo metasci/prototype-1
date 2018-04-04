@@ -46,7 +46,6 @@ module.exports = {
 		models.Highlight.create(newHighlight).then(()=>{
 			res.redirect('/admin/homepage');
 		});
-		
 	},
 
 	updateAnnual: (req, res, next) => {
@@ -68,7 +67,9 @@ module.exports = {
 	},
 
 	deleteHighlight: (req, res, next) => {
-		console.log(req.body.id);
+		// console.log(req.body.id);
+
+		models.Highlight.destroy({where: {id: req.body.id}})
 
 		res.redirect('/admin/homepage');
 	}
