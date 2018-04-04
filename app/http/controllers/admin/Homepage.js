@@ -38,7 +38,6 @@ module.exports = {
 	addHighlight: (req, res, next) => {
 
 		let datetime = new Date(req.body.date + "T" + req.body.time + "Z").toISOString();
-		console.log(datetime);
 		let newHighlight = {
 			date: datetime,
 			description: req.body.description 

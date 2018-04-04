@@ -1,25 +1,29 @@
+const root 		= require('app-root-path');
+const models 	= require(root + '/database/models');
 
 module.exports = {
 	
 	index: (req, res, next) => {
 
-		res.locals.service = {
-			times: [{info:"1 PM wednesday", id:1}, {info:"4 PM friday", id:2}],
-			description: decodeURI("%3Cp%3EAnim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.%3C/p%3E")
-		}
+		res.locals.service = {};
+		res.locals.christedu = {};
 
-		res.locals.christedu = {
-			"Sunday School": decodeURI("%3Cp%3EAnim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.%3C/p%3E"),
-			"Youth Group": decodeURI("%3Cp%3EAnim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.%3C/p%3E")
-		}
-		
-		res.locals.docs = {
-			bulletin: "https://www.google.com",
-			refrigerator: "https://www.stackoverflow.com",
-			newsletter: "https://www.w3schools.com"
-		}
-
-	  res.render('pages/admin/worship');
+		models.ServiceTime.findAll().then(results => {
+			let times = [];
+			results.forEach(item => {
+				times.push({info:item.get().time, id:item.get().id});
+			});
+			res.locals.service.times = times;
+		}).then(models.Service.findOne({attributes: ['description']}).then(results => {
+			res.locals.service.description = decodeURI(results.get().description);
+		}).then(models.ChristianEdu.findAll({attributes: ['title', 'description']}).then(results => {
+			let edus = {};
+			results.forEach(item => {
+				res.locals.christedu[item.get().title] = decodeURI(item.get().description);
+			});
+		}).finally(function(){
+			res.render('pages/admin/worship');
+		})));
 	},
 
 
@@ -32,14 +36,15 @@ module.exports = {
 			description: req.body.description
 		}
 		// add new ministry to database here
-		console.log(newChristEdu);
-
-		res.sendStatus(200);
+		models.ChristianEdu.create(newChristEdu).then(()=>{
+			res.sendStatus(200);
+		});
 	},
 
 	deleteChristEdu: (req, res, next) => {
-		console.log(req.body.title);
-		res.sendStatus(200);
+		models.ChristianEdu.destroy({where:{title:req.body.title}}).then(()=>{
+			res.sendStatus(200);
+		});
 	},
 
 
@@ -48,18 +53,24 @@ module.exports = {
 	 * Service
 	 */
 	createServiceDesc: (req, res, next) => {
-		console.log(req.body.description);
 
-		res.sendStatus(200);
+		models.Service.findOne().then(service => {
+			service.update({description:req.body.description})
+				.then(()=>{
+					res.sendStatus(200);
+				});
+		});
 	},
 
 	addTime: (req, res, next) => {
-		console.log(req.body.time);
-		res.redirect('/admin/worship/');
+		models.ServiceTime.create({time:req.body.time}).then(()=>{
+			res.redirect('/admin/worship/');
+		});
 	},
 
 	deleteTime: (req, res, next) => {
-		console.log(req.body.id);
-		res.sendStatus(200);
+		models.ServiceTime.destroy({where:{id:req.body.id}}).then(()=>{
+			res.sendStatus(200);
+		});
 	}
 }
