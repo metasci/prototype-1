@@ -10,7 +10,7 @@ module.exports = {
 
 		models.Ministry.findAll().then(results => {
 			results.forEach(item => {
-				res.locals.ministry[item.get().title] = item.get().description;
+				res.locals.ministry[item.get().title] = decodeURI(item.get().description);
 			});
 		}).finally(()=>{
 			res.render('pages/public/ministries');
