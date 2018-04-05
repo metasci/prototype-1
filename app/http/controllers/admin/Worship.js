@@ -7,20 +7,24 @@ module.exports = {
 
 		res.locals.service = {};
 		res.locals.christedu = {};
+		res.locals.service.times = [];
 
 		models.ServiceTime.findAll().then(results => {
-			let times = [];
+			
 			results.forEach(item => {
-				times.push({info:item.get().time, id:item.get().id});
+				res.locals.service.times.push({info:item.get().time, id:item.get().id});
 			});
-			res.locals.service.times = times;
+			 
 		}).then(models.Service.findOne({attributes: ['description']}).then(results => {
+
 			res.locals.service.description = decodeURI(results.get().description);
+
 		}).then(models.ChristianEdu.findAll({attributes: ['title', 'description']}).then(results => {
-			let edus = {};
+			
 			results.forEach(item => {
 				res.locals.christedu[item.get().title] = decodeURI(item.get().description);
 			});
+			
 		}).finally(function(){
 			res.render('pages/admin/worship');
 		})));
@@ -35,7 +39,7 @@ module.exports = {
 			title: req.body.title,
 			description: req.body.description
 		}
-		// add new ministry to database here
+		// add new Christian Education to database here
 		models.ChristianEdu.create(newChristEdu).then(()=>{
 			res.sendStatus(200);
 		});
