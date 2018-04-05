@@ -3,6 +3,9 @@ const models 	= require(root + '/database/models');
 
 module.exports = {
 	
+	/**
+	 * Retrieve wedding info to display on admin dash
+	 */
 	index: (req, res, next) => {
 
 		models.Wedding.findOne().then(result => {
