@@ -12,9 +12,9 @@
     {{!-- add new rentals --}}
     <div class="container topmargin border padding">
         <h6>Update Wedding Information</h6>
-        <form onsubmit="return newRental(event);">
+        <form onsubmit="return newWedding(event);">
             <div id="editor">
-                <p>enter new wedding information here</p>
+                {{{weddings}}}
             </div>
             <button type="submit" class="btn btn-primary topmargin">Submit</button>
         </form>
@@ -32,7 +32,7 @@
             theme: 'snow'
         });
 
-        function newRental(event){
+        function newWedding(event){
             event.preventDefault();
             
             const data = {};
