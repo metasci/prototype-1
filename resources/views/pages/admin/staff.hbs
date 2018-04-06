@@ -37,7 +37,7 @@
         {{#each staff}}
             <div class="col image-card">
                 <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="/images/diane.jpg" alt="Card image cap" async>
+                    <img class="card-img-top" src="/storage/images/staff/{{this.photo}}" alt="Card image cap" async>
                     <div class="card-body">
                         <span class="hide id">{{this.id}}</span>
                         <h5 class="card-title">{{this.name}}</h5>
@@ -56,8 +56,9 @@
 <script>
     $('.delete').on('click',function(){
         let data = {};
-        data.id = $(this).siblings('.id').html().trim(); 
-        
+        data.id = $(this).siblings('.id').html().trim();
+        data.image = $(this).parent().siblings('.card-img-top').attr('src'); 
+
         $.post('/admin/staff/delete', data, function(data, status){
             location.reload();
         });

@@ -29,20 +29,22 @@ module.exports = {
 
 	
 	create: (req, res, next) => {
-		// save new staff details
-		let newStaff = {
-			name: req.body.name,
-			title: req.body.title,
-			description: req.body.description
-		}
 		
 		// retrieve file being uploaded
 		let file = new formidable.IncomingForm();
 		file.parse(req, (err, fields, files) => {
 			if(err) throw err;
 
-			// save image name to db
-			newStaff.photo = `${uniqid()}_${files.image.name}`;
+			// save new staff details
+			let newStaff = {
+				photo: `${uniqid()}_${files.image.name}`,
+				name: fields.name,
+				title: fields.title,
+				description: fields.description
+			}
+
+			console.log(newStaff);
+			
 			// add new Staff to db here
 			models.Staff.create(newStaff).then(()=>{
 
@@ -64,8 +66,12 @@ module.exports = {
 	destroy: (req, res, next) => {
 
 		//remove selected staff from db here
-		console.log(req.body.id);
+		models.Staff.destroy({where: {id: req.body.id}}).then(result => {
+			fs.unlink(`${root}/public${req.body.image}`, err => {
+				if(err) throw err;
+				res.sendStatus(200);
+			});
+		});
 		
-		res.sendStatus(200);
 	}
 }
