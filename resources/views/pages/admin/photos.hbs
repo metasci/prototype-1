@@ -5,7 +5,7 @@
 <div class="container topmargin border-top-dark padding">
         <h4>Add a New Photo</h4>
     <div class="jumbotron topmargin">
-        <form class="" action="/admin/photos" method="post">
+        <form class="" action="/admin/photos" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
@@ -31,7 +31,7 @@
         {{#each photos}}
             <div class="col image-card">
                 <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="/images/diane.jpg" alt="Card image cap" async>
+                    <img class="card-img-top" src="/storage/images/photos/{{this.photo}}" alt="Card image cap" async>
                     <div class="card-body">
                         <span class="hide id">{{this.id}}</span>
                         <p class="card-text">{{this.description}}</p>
@@ -49,6 +49,7 @@
     $('.delete').on('click',function(){
         let data = {};
         data.id = $(this).siblings('.id').html().trim(); 
+        data.image = $(this).parent().siblings('.card-img-top').attr('src'); 
         
         $.post('/admin/photos/delete', data, function(data, status){
             location.reload();

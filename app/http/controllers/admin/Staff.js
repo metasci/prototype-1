@@ -27,7 +27,9 @@ module.exports = {
 		});
 	},
 
-	
+	/**
+	 * ADD NEW STAFF
+	 */
 	create: (req, res, next) => {
 		
 		// retrieve file being uploaded
@@ -43,8 +45,6 @@ module.exports = {
 				description: fields.description
 			}
 
-			console.log(newStaff);
-			
 			// add new Staff to db here
 			models.Staff.create(newStaff).then(()=>{
 
@@ -63,6 +63,9 @@ module.exports = {
 		});	
 	},
 
+	/**
+	 * DELETE STAFF
+	 */
 	destroy: (req, res, next) => {
 
 		//remove selected staff from db here
