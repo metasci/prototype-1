@@ -1,21 +1,30 @@
+const root 		= require('app-root-path');
+const models 	= require(root + '/database/models');
 
 module.exports = {
-	
+
+	/**
+	 * Retreive Staff info from database and display admin page
+	 */
 	index: (req, res, next) => {
-
-		res.locals.staff = [
-			{id:1,name: "Diane White", title: "Pastor", description: "Some quick example text to build on the card title and make up the bulk of the card's content."},
-			{id:2,name: "Phyllis", title: "Worker Bee", description: "Some quick example text to build on the card title and make up the bulk of the card's content."},
-			{id:3,name: "Diane White", title: "Pastor", description: "Some quick example text to build on the card title and make up the bulk of the card's content."},
-			{id:4,name: "Phyllis", title: "Worker Bee", description: "Some quick example text to build on the card title and make up the bulk of the card's content."},
-			{id:5,name: "Diane White", title: "Pastor", description: "Some quick example text to build on the card title and make up the bulk of the card's content."},
-			{id:6,name: "Phyllis", title: "Worker Bee", description: "Some quick example text to build on the card title and make up the bulk of the card's content."},
-			{id:7,name: "Diane White", title: "Pastor", description: "Some quick example text to build on the card title and make up the bulk of the card's content."}
-		];
-
-	  res.render('pages/admin/staff');
+		res.locals.staff = [];
+		models.Staff.findAll().then(results => {
+			results.forEach(item => {
+				let staff = {
+					id: item.get().id,
+					photo: item.get().photo,
+					name: item.get().name,
+					title: item.get().title,
+					description: item.get().description
+				}
+				res.locals.staff.push(staff);
+			});
+		}).finally(()=>{
+			res.render('pages/admin/staff');
+		});
 	},
 
+	
 	create: (req, res, next) => {
 		
 		let newStaff = {

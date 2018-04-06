@@ -2,6 +2,7 @@ const root 		= require('app-root-path');
 const models 	= require(root + '/database/models');
 
 module.exports = {
+	
 	/**
 	 * Retrieve About info to display on admin dash
 	 */

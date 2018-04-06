@@ -3,9 +3,10 @@ const models 	= require(root + '/database/models');
 
 module.exports = {
 	
+	/**
+	 * Retreive Staff info from database and display public page
+	 */
 	index: (req, res, next) => {
-		
-
 		models.Staff.findAll().then(results => {
 			res.locals.staff = [];
 			results.forEach(item => {
