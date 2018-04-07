@@ -9,23 +9,20 @@ module.exports = {
             res.locals.layout = 'adminLayout';
             
 
-            // if(req.session && req.session.admin){
-            //     models.Admin.findOne({id: req.session.admin.id}).then(result => {
-            //         if(result){
-            //             req.admin = result.get();
-            //         } else {
-            //             console.log('*******');
-            //         }
-            //     });
-            // } else {
-
-            // }
-
-
-            // if logged in allow passage
-            if(true){
-                next();
-            } else{
+            if(req.session && req.session.admin){
+                // session exists
+                models.Admin.findOne({where: {id: req.session.admin.id}}).then(result => {
+                    if(result){
+                        // admin id exists - user can pass
+                        next();
+                    } else {
+                        // user doesn't exist -- remove session
+                        req.session.reset();
+                        res.redirect('/');
+                    }
+                });
+            } else {
+                // session doesn't exist -- send to public homepage
                 res.redirect('/');
             }
         }
