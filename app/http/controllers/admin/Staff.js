@@ -33,8 +33,8 @@ module.exports = {
 	create: (req, res, next) => {
 		
 		// retrieve file being uploaded
-		let file = new formidable.IncomingForm();
-		file.parse(req, (err, fields, files) => {
+		let form = new formidable.IncomingForm();
+		form.parse(req, (err, fields, files) => {
 			if(err) throw err;
 
 			// save new staff details

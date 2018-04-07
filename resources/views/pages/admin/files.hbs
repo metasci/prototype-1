@@ -4,30 +4,30 @@
 
 <div class="container topmargin border-top-dark">
     <div class="container text-center topmargin">
-        <form action="/admin/files" method="POST">
+        <form action="/admin/files" method="POST" enctype="multipart/form-data">
             <div class="row">
             
                 <div class="col">
                     <h6 class="topmargin">Weekly Worship Bulletin</h6>
-                    <input class="hide fileinput" type="file" name="bulletin">
+                    <input class="hide fileinput" type="file" name="bulletin" accept=".pdf">
                     <button type="button" class="btn btn-outline-dark filebtn"><span data-feather="upload"></span> Upload PDF</button>
                     <p class="filelabel topmargin"></p>
                 </div>
                 <div class="col">
                     <h6 class="topmargin">Refrigerator Page</h6>
-                    <input class="hide fileinput" type="file" name="fridge">
+                    <input class="hide fileinput" type="file" name="refrigerator" accept=".pdf">
                     <button type="button" class="btn btn-outline-dark filebtn"><span data-feather="upload"></span> Upload PDF</button>
                     <p class="filelabel topmargin"></p>
                 </div>
                 <div class="col">
                     <h6 class="topmargin">Newsletter</h6>
-                    <input class="hide fileinput" type="file" name="news">
+                    <input class="hide fileinput" type="file" name="newsletter" accept=".pdf">
                     <button type="button" class="btn btn-outline-dark filebtn"><span data-feather="upload"></span> Upload PDF</button>
                     <p class="filelabel topmargin"></p>
                 </div>
                 <div class="col">
                     <h6 class="topmargin">Service Audio</h6>
-                    <input class="hide fileinput" type="file" name="audio">
+                    <input class="hide fileinput" type="file" name="audiofile" accept=".mp3">
                     <button type="button" class="btn btn-outline-dark filebtn"><span data-feather="upload"></span> Upload MP3</button>
                     <p class="filelabel topmargin"></p>
                 </div>
