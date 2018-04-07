@@ -24,6 +24,7 @@ router.post('/login', Controller.Login.login);
 
 router.use('/', Middleware.Auth.isAuthenticated);
 
+router.get('/logout', Controller.Login.logout);
 
 router.get('/', Controller.MainDash.index);
 

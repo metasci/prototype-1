@@ -6,10 +6,11 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('client-sessions');
 
+require('dotenv').config();
+
 var index = require('./routes/index');
 var admin = require('./routes/admin');
 
-require('dotenv').config();
 var app = express();
 
 

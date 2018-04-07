@@ -8,13 +8,14 @@
             <img class="mb-4" src="/favicon.ico" alt="" width="72" height="72">
             <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
             {{#if error}}
-              <h1>{{error}}</h1>
+              <div class="error-message p-margin-bottom">
+                {{error}}
+              </div>
             {{/if}}
             <label for="username" class="sr-only">User Name</label>
-            <input type="text" id="username" class="form-control" placeholder="User Name" name="username" required autofocus>
-            <p></p>            
+            <input type="text" id="username" class="form-control p-margin-bottom" placeholder="User Name" name="username" required autofocus>
             <label for="inputPassword" class="sr-only">Password</label>
-            <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="passwd" required>
+            <input type="password" id="inputPassword" class="form-control p-margin-bottom" placeholder="Password" name="passwd" required>
             <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
         </form>
 

@@ -2,6 +2,13 @@ const root 			= require('app-root-path');
 const models 		= require(root + '/database/models');
 const bcrypt 		= require('bcrypt');
 
+
+function loginError(req, res){
+	req.session.error = "Incorrect Login Information.";
+	res.redirect('/admin/login');
+}
+
+
 module.exports = {
 	
 	index: (req, res, next) => {
@@ -13,31 +20,35 @@ module.exports = {
 
 	login: (req, res, next) => {
 
-
-		req.session.reset();
-
 		models.Admin.findOne({where: {username: req.body.username}}).then(result => {
 			if(result){
 				// username exists
-				console.log('******** awesome');
-				bcrypt.compare(req.body.passwd, result.get().passwd, (err, res) => {
-					console.log("******** "+res);
-					if(res) {
+				bcrypt.compare(req.body.passwd, result.get().passwd, (err, response) => {
+					if(response) {
 						// password is correct
 						req.session.reset();
 						req.session.admin = {};
 						req.session.admin.id = result.get().id;
 						req.session.admin.username = result.get().username;
+						res.redirect('/admin/');
 					} else {
 						// password is NOT correct
+						// console.log(tacos);
+						loginError(req, res);
 					}
 				});
-			} else{
-				console.log('******** too bad');
+			} else {
 				// username doesn't exist
-				req.session.error = "SUCKA!"
+				loginError(req, res);
 			}
-			res.redirect('/admin/login'); // change this to /admin
 		});
+	},
+
+
+
+	logout: (req, res, next) => {
+		console.log('***********  wtf');
+		req.session.reset();
+		res.redirect('/');
 	}
 }
