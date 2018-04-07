@@ -3,10 +3,29 @@
 </div>
 
 <div class="jumbotron topmargin">
-    <form action="/admin/account" method="post" class="form">
+    <form action="/admin/account" method="post" onsubmit="return ensure(event)" class="form">
         <div class="form-group">
-            <input class="form-control" type="password" name="passwd" id="passwd" placeholder="Enter new password here">
+            <input class="form-control" type="password" name="current" placeholder="Enter current password" required>
+            <p></p>
+            <input class="form-control" type="password" name="passwd" id="pass1" placeholder="Enter new password here" required>
+            <p></p>
+            <input class="form-control" type="password" name="passwd2" id="pass2" placeholder="Confirm new password" required>
             <button class="btn btn-primary topmargin" type="submit">Submit</button>
         </div>
     </form>
 </div>
+
+
+{{#extend 'scripts'}}
+<script>
+    function ensure(event){
+        let pass1 = $('#pass1').val();
+        let pass2 = $('#pass2').val();
+        if(pass1 != pass2) {
+            alert("Passwords are not the same");
+            return false;
+        } 
+        return true;
+    }
+</script>
+{{/extend}}
