@@ -132,3 +132,15 @@ body {
     display: none;
   }
 }
+
+
+.error-message {
+  background-color: #F27474;
+  border-radius: 5px;
+  color: white;
+  padding: 10px;
+}
+
+.p-margin-bottom {
+  margin-bottom: 1em;  
+}

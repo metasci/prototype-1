@@ -1,7 +1,11 @@
 <div class="container">
     <h2>Change Your Admin Login Password</h2>
 </div>
-
+{{#if error}}
+    <div class="error-message p-margin-bottom">
+        {{error}}
+    </div>
+{{/if}}
 <div class="jumbotron topmargin">
     <form action="/admin/account" method="post" onsubmit="return ensure(event)" class="form">
         <div class="form-group">

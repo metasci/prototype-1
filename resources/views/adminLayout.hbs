@@ -28,16 +28,57 @@
       </div>
     </div>
 
-    {{!-- DELETE THIS --}}
+
     <!-- Icons -->
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
     <script>
-      feather.replace()
+      feather.replace();
     </script>
-    {{!-- DELETE --}}
-
-
     <script src="/assets/js/jquery.min.js"></script>
+    <script>
+      let elem;
+      switch(window.location.pathname){
+        case '/admin': 
+          elem = $('#admin');
+          break;
+        case '/admin/homepage':
+          elem = $('#homepage'); 
+          break; 
+        case '/admin/worship':  
+          elem = $('#worship'); 
+          break;
+        case '/admin/ministries': 
+          elem = $('#ministries'); 
+          break; 
+        case '/admin/weddings': 
+          elem = $('#weddings'); 
+          break; 
+        case '/admin/about': 
+          elem = $('#about'); 
+          break; 
+        case '/admin/staff': 
+          elem = $('#staff'); 
+          break; 
+        case '/admin/photos': 
+          elem = $('#photos'); 
+          break; 
+        case '/admin/music': 
+          elem = $('#music'); 
+          break; 
+        case '/admin/files': 
+          elem = $('#files'); 
+          break; 
+        case '/admin/account':
+          elem = $('#account');  
+          break; 
+        default: 
+          elem = $('#admin');
+      }
+
+      $('.nav-link').removeClass('active');
+      elem.addClass('active');
+
+    </script>
     {{{block "scripts"}}}
   </body>
 </html>
