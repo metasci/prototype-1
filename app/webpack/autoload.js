@@ -7,10 +7,11 @@ const glob = require('glob');
 const fs = require('fs');
 const appRoot = require('app-root-path');
 
+const isWindows = process.platform === "win32";
+
 function getFiles(src, callback){
 	glob(src, callback);
 }
-
 
 getFiles('resources/assets/public/**/*.*', (err, files) => {
 	if(err) throw err;
@@ -19,8 +20,13 @@ getFiles('resources/assets/public/**/*.*', (err, files) => {
 	fs.writeFile('./app/webpack/asset_list.js', '', () => {
 		files.forEach((file_path) => {
 			// print import statement in asset_list
+            let newPath = appRoot.resolve(file_path);
+
+            if(isWindows)
+                newPath = newPath.replace(/\\/g, "\\\\");
+
 			if(file_path.slice(-3) !== ('.swp'))
-				fs.appendFile('./app/webpack/asset_list.js', 'import "' + appRoot + '/' + file_path + '";\n', () => {});
+				fs.appendFile('./app/webpack/asset_list.js', 'import "' + newPath + '";\n', () => {});
 		});		
 	});
 });
