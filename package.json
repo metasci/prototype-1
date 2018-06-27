@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./app/webpack/autoload && webpack && node ./bin/www",
+    "debug": "node ./app/webpack/autoload && webpack && node %NODE_DEBUG_OPTION% ./bin/www",
     "build": "node ./app/webpack/autoload && webpack",
     "test": "mocha ./test/unit/**/*.test.js || true",
     "integration": "mocha ./test/integration/**/*.test.js || true",
