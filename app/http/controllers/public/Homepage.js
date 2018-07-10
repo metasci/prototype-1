@@ -28,10 +28,9 @@ module.exports = {
 			});
 			res.locals.highlights = highlights;
 
-		}).then(models.File.findOne({attributes: ['newsletter', 'audiofile']}).then( results => {
+		}).then(models.File.findOne({attributes: ['newsletter']}).then( results => {
 
 				res.locals.newsletter = results.get().newsletter;
-				res.locals.audio = results.get().audiofile;
 
 		}).then(models.Homepage.findOne({attributes: ['mission', 'annual_msg', 'pastor_quote']}).then( results => {
 

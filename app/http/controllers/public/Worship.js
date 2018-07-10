@@ -33,8 +33,9 @@ module.exports = {
 			res.locals.docs.bulletin = result.get().bulletin;
 			res.locals.docs.refrigerator = result.get().refrigerator;
 			res.locals.docs.newsletter = result.get().newsletter;
-	
-		}).finally(function(){
+            res.locals.audio = result.get().audiofile;
+
+        }).finally(function(){
 			res.render('pages/public/worship');
 		}))));
 	}
