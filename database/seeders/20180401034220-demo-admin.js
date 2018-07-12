@@ -5,7 +5,7 @@ module.exports = {
     
     return queryInterface.bulkInsert('Admins', [{
       username: 'admin',
-      passwd: "test"
+      passwd: "$2a$10$HK2RMCTVTaOPXxvuu.V10ehphQJp6nu8Uw1WZ82OoHWYqTyWXWmjG"
     }], {});
   
   },
