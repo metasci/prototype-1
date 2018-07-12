@@ -4423,9 +4423,10 @@
 		-ms-justify-content: center;
 		justify-content: center;
 		background-attachment: fixed;
-		background-image: url("../../images/pic01.jpg");
+		background-image: url("../../images/ucc_church01.jpg");
 		background-position: bottom left;
-		background-size: cover;
+		background-size: contain;
+        background-repeat: no-repeat;
 		border-top: solid 10px #052e5c;
 		min-height: 75vh;
 		position: relative;
