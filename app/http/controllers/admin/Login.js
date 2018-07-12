@@ -21,24 +21,22 @@ module.exports = {
 	login: (req, res, next) => {
 
 		models.Admin.findOne({where: {username: req.body.username}}).then(result => {
-			if(result){
+			let usernameExists = result ? true : false;
+		    if(usernameExists){
 				// username exists
 				bcrypt.compare(req.body.passwd, result.get().passwd, (err, response) => {
-					if(response) {
-						// password is correct
+					let passwdIsCorrect = response;
+				    if(passwdIsCorrect) {
 						req.session.reset();
 						req.session.admin = {};
 						req.session.admin.id = result.get().id;
 						req.session.admin.username = result.get().username;
 						res.redirect('/admin/');
 					} else {
-						// password is NOT correct
-						// console.log(tacos);
 						loginError(req, res);
 					}
 				});
 			} else {
-				// username doesn't exist
 				loginError(req, res);
 			}
 		});
