@@ -4,28 +4,10 @@ const models 	= require(root + '/database/models');
 module.exports = {
 	
 	index: (req, res, next) => {
-
-		res.locals.service = {};
-		res.locals.musicItem = {};
-		res.locals.service.times = [];
-
-		models.ServiceTime.findAll().then(results => {
-			
-			results.forEach(item => {
-				res.locals.service.times.push({info:item.get().time, id:item.get().id});
-			});
-			 
-		}).then(models.Service.findOne({attributes: ['description']}).then(results => {
-
-			res.locals.service.description = decodeURI(results.get().description);
-
-		}).then(models.Music.findAll().then(results => {
-            results.forEach(item => {
-                res.locals.musicItem[item.get().title] = decodeURI(item.get().description);
-            });
-        }).finally(function(){
-			res.render('pages/admin/worship');
-		})));
+        getData().then(data => {
+            res.locals = data;
+            res.render('pages/admin/worship');
+        });
 	},
 
 
@@ -78,4 +60,29 @@ module.exports = {
 			res.sendStatus(200);
 		});
 	}
+}
+
+
+
+function getData() {
+    let promises = [
+        models.ServiceTime.getServiceTimes(),
+        models.Service.getServiceDescription(),
+        models.Music.getMusic(),
+        models.File.getFiles()
+    ];
+
+    return Promise.all(promises)
+        .then(values => {
+            let data = {};
+            data.service = {};
+
+            data.service.times = values[0];
+            data.service.description = values[1];
+            data.musicItem = values[2];
+            data.docs = values[3].docs;
+            data.audio = values[3].audio;
+
+            return data;
+        });
 }
