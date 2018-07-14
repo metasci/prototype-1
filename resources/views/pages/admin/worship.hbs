@@ -45,43 +45,41 @@
 
 <div class="container topmargin border-top-dark padding">
     <div class="topmargin">
-        <h4>Christian Education</h4>
+        <h4>Music</h4>
     </div>
     <div id="accordion" class="">
-        {{#each christedu}}
+        {{#each musicItem}}
 
             <div class="card">
-
                 <div class="card-header" id="heading{{@index}}">
                     <h5 class="mb-0">
                         <button class="btn btn-info" data-toggle="collapse" data-target="#collapse{{@index}}" aria-expanded="true" aria-controls="collapse{{@index}}">
-                        {{@key}}
+                            {{@key}}
                         </button>
-                        
-                        <button class="btn btn-danger float-right delete-christedu">delete</button>
+                        <button class="btn btn-danger float-right delete-music">delete</button>
                     </h5>
                 </div>
+
                 <div id="collapse{{@index}}" class="collapse" aria-labelledby="heading{{@index}}" data-parent="#accordion">
                     <div class="card-body">
                         {{{this}}}
                     </div>
                 </div>
-
             </div>
 
         {{/each}}
     </div>
 
-    {{!-- add new christian education --}}
-    <div class="container topmargin border padding" id="christedu">
-        <h6>Add new Christian Education group</h6>
-        <form onsubmit="return newChristEDU(event);">
+    {{!-- add new music --}}
+    <div class="container topmargin border padding" id="music">
+        <h6>Add a new music item</h6>
+        <form onsubmit="return newMusicItem(event);">
             <div class="form-group">
-                <label for="christedutitle">Title</label>
-                <input id="christedutitle" type="title" class="form-control" id="christedutitle" placeholder="Enter Title">
+                <label for="musictitle">Title</label>
+                <input id="musictitle" type="title" class="form-control" id="musictitle" placeholder="Enter Title">
             </div>
             <div id="editor2">
-                <p>enter new Christian Education description here</p>
+                <p>enter new music item here</p>
             </div>
             <button type="submit" class="btn btn-primary topmargin">Submit</button>
         </form>
@@ -117,26 +115,26 @@
             return false;
         }
 
-        function newChristEDU(event){
+        function newMusicItem(event){
             event.preventDefault();
-            
-            let data = {};
-            data.title = $('#christedutitle').val();
-            data.description = encodeURI($('#christedu #editor2 .ql-editor').html());
 
-            $.post('/admin/worship/newchristedu', data, function(data, status){
-    
+            let data = {};
+            data.title = $('#musictitle').val();
+            data.description = encodeURI($('#music #editor2 .ql-editor').html());
+
+            $.post('/admin/worship/music/create', data, function(data, status){
+
                 location.reload();
             });
 
             return false;
         }
 
-        $('.delete-christedu').on('click',function(){
+        $('.delete-music').on('click',function(){
             let data = {};
-            data.title = $(this).siblings('.btn-info').html().trim(); 
-            //console.log();
-            $.post('/admin/worship/deletechristedu', data, function(data, status){
+            data.title = $(this).siblings('.btn-info').html().trim();
+
+            $.post('/admin/worship/music/delete', data, function(data, status){
                 location.reload();
             });
         });
@@ -144,13 +142,10 @@
         $('.delete-servicetime').on('click',function(){
             let data = {};
             data.id = $(this).siblings('span').html().trim();
-            //console.log();
             $.post('/admin/worship/deleteservicetime', data, function(data, status){
                 location.reload();
             });
         });
 
-
-        
     </script>
 {{/extend}}

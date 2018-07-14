@@ -7,7 +7,7 @@ module.exports = {
 	index: (req, res, next) => {
 	
 		res.locals.service = {};
-		res.locals.christedu = {};
+		res.locals.musicItem = {};
 		res.locals.docs = {};
 
 		models.ServiceTime.findAll({attributes: ['time']}).then(results => {
@@ -21,13 +21,12 @@ module.exports = {
 	
 			res.locals.service.description = decodeURI(results.get().description);
 	
-		}).then(models.ChristianEdu.findAll({attributes: ['title', 'description']}).then(results => {
-	
-			let edus = {};
-			results.forEach(item => {
-				res.locals.christedu[item.get().title] = decodeURI(item.get().description);
-			});
-	
+		}).then(models.Music.findAll().then(results => {
+
+            results.forEach(item => {0
+                res.locals.musicItem[item.get().title] = decodeURI(item.get().description);
+            });
+
 		}).then(models.File.findOne().then(result => {
 	
 			res.locals.docs.bulletin = result.get().bulletin;
@@ -40,3 +39,4 @@ module.exports = {
 		}))));
 	}
 }
+
