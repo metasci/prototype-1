@@ -4,9 +4,9 @@
 
 
 <div class="container">
-    <h2>Music</h2>
+    <h2>Christian Education</h2>
     <div id="accordion">
-        {{#each musicItem}}
+        {{#each christedu}}
 
             <div class="card">
                 <div class="card-header" id="heading{{@index}}">
@@ -28,16 +28,15 @@
         {{/each}}
     </div>
 
-    {{!-- add new ministries --}}
     <div class="container topmargin border padding">
-        <h6>Add a new music item</h6>
-        <form onsubmit="return newMusicItem(event);">
+        <h6>Add new Christian Education</h6>
+        <form onsubmit="return newChristEdu(event);">
             <div class="form-group">
-                <label for="musictitle">Title</label>
-                <input id="musictitle" type="title" class="form-control" id="musictitle" placeholder="Enter Title">
+                <label for="christedutitle">Title</label>
+                <input id="christedutitle" type="title" class="form-control" id="christedutitle" placeholder="Enter Title">
             </div>
             <div id="editor">
-                <p>enter new music item here</p>
+                <p>enter new Christian Education here</p>
             </div>
             <button type="submit" class="btn btn-primary topmargin">Submit</button>
         </form>
@@ -54,14 +53,14 @@
             theme: 'snow'
         });
 
-        function newMusicItem(event){
+        function newChristEdu(event){
             event.preventDefault();
             
             const data = {};
-            data.title = $('#musictitle').val();
+            data.title = $('#christedutitle').val();
             data.description = encodeURI($('#editor .ql-editor').html());
 
-            $.post('/admin/music', data, function(data, status){
+            $.post('/admin/christedu/create', data, function(data, status){
     
                 location.reload();
             });
@@ -73,7 +72,7 @@
             let data = {};
             data.title = $(this).siblings('.btn-info').html().trim(); 
            
-            $.post('/admin/music/delete', data, function(data, status){
+            $.post('/admin/christedu/delete', data, function(data, status){
                 location.reload();
             });
         });

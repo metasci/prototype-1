@@ -23,6 +23,8 @@ router.get('/photos', Controller.Photos.index);
 
 router.get('/worship', Controller.Worship.index);
 
+router.get('/christedu', Controller.ChristEdu.index);
+
 router.get('/weddings', Controller.Weddings.index);
 
 router.get('/contact', Controller.Contact.index);
@@ -30,7 +32,6 @@ router.post('/contact', Controller.Contact.send);
 
 router.get('/staff', Controller.Staff.index);
 
-router.get('/music', Controller.Music.index);
 
 
 

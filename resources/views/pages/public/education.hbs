@@ -1,19 +1,19 @@
 <!-- Main -->
 <section id="main" class="wrapper">
-	<div class="inner">
+    <div class="inner">
 
-		<header>
-			<h1>Music</h1>
-			<p>Feugiat adipiscing nisl amet</p>
-		</header>
-		<a href="#" class="image main"><img src="images/pic07.jpg" alt="" /></a>
+        <header>
+            <h1>Christian Education</h1>
+            <p>Jesus said, "Let the little children come unto me."</p>
+        </header>
+        <div class="image main"><img src="images/pic07.jpg" alt="" /></div>
 
-        <div class="container">
+        <div class="container topmargin">
             <div id="accordion">
 
-                {{#each musicItem}}
+                {{#each christedu}}
 
-                    <div class="card">
+                    <div class="card dark-text">
                         <div class="card-header" id="heading{{@index}}">
                             <h5 class="mb-0">
                                 <button class="btn btn-link" data-toggle="collapse" data-target="#collapse{{@index}}" aria-expanded="true" aria-controls="collapse{{@index}}">
@@ -30,9 +30,10 @@
                     </div>
 
                 {{/each}}
-                
+
             </div>
+
         </div>
 
-	</div>
+    </div>
 </section>
