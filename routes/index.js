@@ -25,7 +25,7 @@ router.get('/worship', Controller.Worship.index);
 
 router.get('/christedu', Controller.ChristEdu.index);
 
-router.get('/weddings', Controller.Weddings.index);
+router.get('/rentals', Controller.Rentals.index);
 
 router.get('/contact', Controller.Contact.index);
 router.post('/contact', Controller.Contact.send);
