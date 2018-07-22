@@ -5,9 +5,7 @@ module.exports = {
         
         isAuthenticated: (req, res, next)=>{
             
-            // add code here
-            res.locals.layout = 'adminLayout';
-            
+            res.locals.layout = 'adminLayout'; // todo: remove this from here. It has nothing to do with authentication
 
             if(req.session && req.session.admin){
                 // session exists

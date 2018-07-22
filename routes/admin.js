@@ -58,8 +58,8 @@ router.post('/worship/deleteservicetime', Controller.Worship.deleteTime);
 
 
 
-router.get('/weddings', Controller.Weddings.index);
-router.post('/weddings', Controller.Weddings.create);
+router.get('/rentals', Controller.Rentals.index);
+router.post('/rentals', Controller.Rentals.create);
 
 router.get('/staff', Controller.Staff.index);
 router.post('/staff', Controller.Staff.create);

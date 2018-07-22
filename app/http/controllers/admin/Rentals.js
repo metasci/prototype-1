@@ -7,12 +7,10 @@ module.exports = {
 	 * Retrieve wedding info to display on admin dash
 	 */
 	index: (req, res, next) => {
-
-		models.Wedding.findOne().then(result => {
-			res.locals.weddings = decodeURI(result.get().description);
-		}).finally(() => {
-			res.render('pages/admin/weddings');
-		});
+        getData().then(data => {
+            res.locals.data = data;
+            res.render('pages/admin/rentals');
+        });
 	},
 	
 	/**
@@ -28,4 +26,17 @@ module.exports = {
 				});
 		});
 	}
+}
+
+function getData() {
+    let promises = [
+        models.Wedding.getWeddingDetails()
+    ];
+
+    return Promise.all(promises)
+        .then(values => {
+            let data = {};
+            data.weddings = values[0];
+            return data;
+        });
 }

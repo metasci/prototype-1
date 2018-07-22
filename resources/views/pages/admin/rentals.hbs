@@ -4,9 +4,9 @@
 
 
 <div class="container">
-    <h2>Weddings</h2>
+    <h2>Rentals</h2>
     <div class="jumbotron">
-        {{{weddings}}}
+        {{{data.weddings}}}
     </div>
 
     {{!-- add new rentals --}}
@@ -14,7 +14,7 @@
         <h6>Update Wedding Information</h6>
         <form onsubmit="return newWedding(event);">
             <div id="editor">
-                {{{weddings}}}
+                {{{data.weddings}}}
             </div>
             <button type="submit" class="btn btn-primary topmargin">Submit</button>
         </form>
