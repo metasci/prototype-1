@@ -8,10 +8,10 @@ module.exports = (sequelize, DataTypes) => {
                 // associations can be defined here
             },
             getServiceTimes: function() {
-                return this.findAll({attributes: ['time']}).then(results => {
+                return this.findAll({attributes: ['time', 'id']}).then(results => {
                     let times = [];
                     results.forEach(item => {
-                        times.push(item.get().time);
+                        times.push({info:item.get().time, id:item.get().id});
                     });
                     return times;
                 });
