@@ -7,88 +7,128 @@
             <p>"O Lord, Your word is a lamp to my feet and a light to my path" Psalm 119.105 NRSV</p>
         </header>
         <a href="#" class="image main">
-            <img src="images/pic07.jpg" alt="" />
+            <img src="images/pic07.jpg" alt=""/>
         </a>
 
         <div class="container text-center">
             <div class="row">
                 <div class="col">
                     <h3 class="worship-label">Weekly Worship Bulletin</h3>
-                    <a href="/storage/uploads/bulletin/{{docs.bulletin}}" class="button icon fa-download" target="_blank">Download PDF</a>
+                    <a href="/storage/uploads/bulletin/{{data.docs.bulletin}}" class="button icon fa-download"
+                            target="_blank">Download PDF</a>
                 </div>
                 <div class="col">
                     <h3 class="worship-label">Refrigerator Page</h3>
-                    <a href="/storage/uploads/refrigerator/{{docs.refrigerator}}" class="button icon fa-download" target="_blank">Download PDF</a>
+                    <a href="/storage/uploads/refrigerator/{{data.docs.refrigerator}}" class="button icon fa-download"
+                            target="_blank">Download PDF</a>
                 </div>
                 <div class="col">
                     <h3 class="worship-label">Newsletter</h3>
-                    <a href="/storage/uploads/newsletter/{{docs.newsletter}}" class="button icon fa-download" target="_blank">Download PDF</a>
+                    <a href="/storage/uploads/newsletter/{{data.docs.newsletter}}" class="button icon fa-download"
+                            target="_blank">Download PDF</a>
                 </div>
-            </div>       
+            </div>
         </div>
     </div>
 </section>
 
 <section class="wrapper style1">
     <div class="inner">
-        <div class="row">
-            <div class="container text-center">
-                <div class="col">
-                    <h3>Listen to the latest service!</h3>
-                    <audio controls>
-                        <source src="/storage/uploads/audiofile/{{audio}}" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                <hr>
-                <div class="col">
-                    <h3>Sunday Morning Service Time:</h3>
-                    <ul class="no-bullets">
-                        {{#each service.times}}
-                            <li>{{this}}</li>
-                        {{/each}}
-                    </ul>
-                    <div class="card dark-text padded">
-                            {{{service.description}}}
-                    </div>
-                </div>
+        <div class="container text-center">
+            <div>
+                <h3>Listen to the latest service!</h3>
+                <audio controls>
+                    <source src="/storage/uploads/audiofile/{{data.audio}}" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
             </div>
+
+            <hr>
+
+            <div>
+                <h3>Sunday Morning Service Time:</h3>
+                <ul class="no-bullets">
+                    {{#each data.service.times}}
+                        <li>{{this.info}}</li>
+                    {{/each}}
+                </ul>
+            </div>
+
         </div>
     </div>
 </section>
 
 <section class="wrapper">
     <div class="inner">
-        <div class="row">
-            <div class="container">
-                
-                <h3>Music</h3>
-                <p>"Oh come, let us sing to the Lord; let us make a joyful noise to the rock of our salvation!" Psalm 95:1</p>
-                <div id="accordion">
 
-                    {{#each musicItem}}
+        <div class="container">
+            <h3>Services</h3>
 
-                        <div class="card dark-text">
-                            <div class="card-header" id="heading{{@index}}">
-                                <h5 class="mb-0">
-                                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapse{{@index}}" aria-expanded="true" aria-controls="collapse{{@index}}">
-                                        {{@key}}
-                                    </button>
-                                </h5>
-                            </div>
+            <div id="accordion1">
+                {{#each data.service.description}}
 
-                            <div id="collapse{{@index}}" class="collapse" aria-labelledby="heading{{@index}}" data-parent="#accordion">
-                                <div class="card-body">
-                                    {{{this}}}
-                                </div>
-                            </div>
+                    <div class="card dark-text">
+                        <div class="card-header" id="heading1{{@index}}">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" data-toggle="collapse"
+                                        data-target="#collapse1{{@index}}" aria-expanded="true"
+                                        aria-controls="collapse1{{@index}}">
+                                    {{@key}}
+                                </button>
+                            </h5>
                         </div>
 
-                    {{/each}}
-                    
-                </div>
+                        <div id="collapse1{{@index}}" class="collapse" aria-labelledby="heading1{{@index}}"
+                                data-parent="#accordion1">
+                            <div class="card-body">
+                                {{{this}}}
+                            </div>
+                        </div>
+                    </div>
+
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="wrapper style1">
+</section>
+
+<section class="wrapper">
+    <div class="inner">
+        <div class="container">
+
+            <h3>Music</h3>
+            <p>"Oh come, let us sing to the Lord; let us make a joyful noise to the rock of our salvation!" Psalm
+                95:1</p>
+            <div id="accordion2">
+
+                {{#each data.musicItem}}
+
+                    <div class="card dark-text">
+                        <div class="card-header" id="heading2{{@index}}">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" data-toggle="collapse"
+                                        data-target="#collapse2{{@index}}" aria-expanded="true"
+                                        aria-controls="collapse2{{@index}}">
+                                    {{@key}}
+                                </button>
+                            </h5>
+                        </div>
+
+                        <div id="collapse2{{@index}}" class="collapse" aria-labelledby="heading2{{@index}}"
+                                data-parent="#accordion2">
+                            <div class="card-body">
+                                {{{this}}}
+                            </div>
+                        </div>
+                    </div>
+
+                {{/each}}
 
             </div>
+
         </div>
     </div>
 </section>

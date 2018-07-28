@@ -6,7 +6,7 @@ module.exports = {
 	
 	index: (req, res, next) => {
 		getData().then(data => {
-		    res.locals = data;
+		    res.locals.data = data;
             res.render('pages/public/worship');
         });
 	}
@@ -16,7 +16,7 @@ module.exports = {
 function getData() {
     let promises = [
         models.ServiceTime.getServiceTimes(),
-        models.Service.getServiceDescription(),
+        models.ServiceDescription.getServiceDescriptions(),
         models.Music.getMusic(),
         models.File.getFiles()
     ];

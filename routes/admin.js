@@ -52,9 +52,10 @@ router.post('/photos/delete', Controller.Photos.destroy);
 router.get('/worship', Controller.Worship.index);
 router.post('/worship/music/create', Controller.Worship.createMusic);
 router.post('/worship/music/delete', Controller.Worship.deleteMusic);
-router.post('/worship/servicedescription', Controller.Worship.createServiceDesc);
-router.post('/worship/addservicetime', Controller.Worship.addTime);
-router.post('/worship/deleteservicetime', Controller.Worship.deleteTime);
+router.post('/worship/servicedescription/create', Controller.Worship.createServiceDesc);
+router.post('/worship/servicedescription/delete', Controller.Worship.deleteServiceDesc);
+router.post('/worship/servicetime/create', Controller.Worship.addTime);
+router.post('/worship/servicetime/delete', Controller.Worship.deleteTime);
 
 
 

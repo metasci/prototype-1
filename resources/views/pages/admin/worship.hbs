@@ -10,13 +10,12 @@
 
 <div class="container topmargin border-top-dark">
     <div class="topmargin">
-        <h4>Service</h4>
+        <h4>Service Time</h4>
     </div>
-    {{!-- edit service description --}}
     <div class="container border padding">
         <h6>Edit Service Time</h6>
         <ul class="list-group">
-            {{#each service.times as |time|}}
+            {{#each data.service.times as |time|}}
                 <li class="list-group-item">
                     {{time.info}}
                     <button class="btn btn-danger float-right delete-servicetime" type="button">delete</button>
@@ -24,43 +23,77 @@
                 </li>
             {{/each}}
         </ul>
-        <form action="/admin/worship/addservicetime" method="post" class="topmargin">
+        <form action="/admin/worship/servicetime/create" method="post" class="topmargin">
             <h6>Add new time</h6>
             <input type="text" class="form-control" name="time">
             <button type="submit" class="btn btn-primary topmargin">Submit</button>
         </form>
     </div>
 
-    <div class="container border padding topmargin" id="service">
-        <form onsubmit="return updateServiceDesc(event);">
-            <h6>Edit Service Description</h6>
+</div>
+
+
+<div class="container topmargin border-top-dark padding">
+    <div class="topmargin">
+        <h4>Service Descriptions</h4>
+    </div>
+    <div id="accordion1">
+        {{#each data.service.description}}
+
+            <div class="card">
+                <div class="card-header" id="heading1{{@index}}">
+                    <h5 class="mb-0">
+                        <button class="btn btn-info" data-toggle="collapse" data-target="#collapse1{{@index}}" aria-expanded="true" aria-controls="collapse1{{@index}}">
+                            {{@key}}
+                        </button>
+                        <button class="btn btn-danger float-right delete-servicedescription">delete</button>
+                    </h5>
+                </div>
+
+                <div id="collapse1{{@index}}" class="collapse" aria-labelledby="heading1{{@index}}" data-parent="#accordion1">
+                    <div class="card-body">
+                        {{{this}}}
+                    </div>
+                </div>
+            </div>
+
+        {{/each}}
+    </div>
+
+    <div class="container topmargin border padding" id="service">
+        <h6>Add a new service description</h6>
+        <form onsubmit="return newServiceDescription(event);">
+            <div class="form-group">
+                <label for="servicetitle">Title</label>
+                <input id="servicetitle" type="title" class="form-control" id="servicetitle" placeholder="Enter Title">
+            </div>
             <div id="editor1">
-                {{!-- inject db info here --}}
-                {{{service.description}}}
+                <p>enter new service description here</p>
             </div>
             <button type="submit" class="btn btn-primary topmargin">Submit</button>
         </form>
     </div>
 </div>
 
+
 <div class="container topmargin border-top-dark padding">
     <div class="topmargin">
         <h4>Music</h4>
     </div>
-    <div id="accordion" class="">
-        {{#each musicItem}}
+    <div id="accordion2">
+        {{#each data.musicItem}}
 
             <div class="card">
-                <div class="card-header" id="heading{{@index}}">
+                <div class="card-header" id="heading2{{@index}}">
                     <h5 class="mb-0">
-                        <button class="btn btn-info" data-toggle="collapse" data-target="#collapse{{@index}}" aria-expanded="true" aria-controls="collapse{{@index}}">
+                        <button class="btn btn-info" data-toggle="collapse" data-target="#collapse2{{@index}}" aria-expanded="true" aria-controls="collapse2{{@index}}">
                             {{@key}}
                         </button>
                         <button class="btn btn-danger float-right delete-music">delete</button>
                     </h5>
                 </div>
 
-                <div id="collapse{{@index}}" class="collapse" aria-labelledby="heading{{@index}}" data-parent="#accordion">
+                <div id="collapse2{{@index}}" class="collapse" aria-labelledby="heading2{{@index}}" data-parent="#accordion2">
                     <div class="card-body">
                         {{{this}}}
                     </div>
@@ -101,19 +134,44 @@
             theme: 'snow'
         });
 
-        function updateServiceDesc(event){
+
+
+        function newServiceDescription(event){
             event.preventDefault();
-            
-            const data = {};
+
+            let data = {};
+            data.title = $('#servicetitle').val();
             data.description = encodeURI($('#service #editor1 .ql-editor').html());
 
-            $.post('/admin/worship/servicedescription', data, function(data, status){
-    
+            $.post('/admin/worship/servicedescription/create', data, function(data, status){
                 location.reload();
             });
 
             return false;
         }
+
+        $('.delete-servicedescription').on('click',function(){
+            let data = {};
+            data.title = $(this).siblings('.btn-info').html().trim();
+
+            $.post('/admin/worship/servicedescription/delete', data, function(data, status){
+                location.reload();
+            });
+        });
+
+        //function updateServiceDesc(event){
+        //    event.preventDefault();
+        //
+        //    const data = {};
+        //    data.description = encodeURI($('#service #editor1 .ql-editor').html());
+        //
+        //    $.post('/admin/worship/servicedescription', data, function(data, status){
+        //
+        //        location.reload();
+        //    });
+        //
+        //    return false;
+        //}
 
         function newMusicItem(event){
             event.preventDefault();
@@ -142,7 +200,7 @@
         $('.delete-servicetime').on('click',function(){
             let data = {};
             data.id = $(this).siblings('span').html().trim();
-            $.post('/admin/worship/deleteservicetime', data, function(data, status){
+            $.post('/admin/worship/servicetime/delete', data, function(data, status){
                 location.reload();
             });
         });

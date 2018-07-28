@@ -5,7 +5,7 @@ module.exports = {
 	
 	index: (req, res, next) => {
         getData().then(data => {
-            res.locals = data;
+            res.locals.data = data;
             res.render('pages/admin/worship');
         });
 	},
@@ -36,14 +36,22 @@ module.exports = {
 	 * Service Description
 	 */
 	createServiceDesc: (req, res, next) => {
+        let newServiceDesc = {
+            title: req.body.title,
+            description: req.body.description
+        }
 
-		models.Service.findOne().then(service => {
-			service.update({description:req.body.description})
-				.then(()=>{
-					res.sendStatus(200);
-				});
-		});
+        models.ServiceDescription.create(newServiceDesc).then(()=>{
+            res.sendStatus(200);
+        });
 	},
+
+    deleteServiceDesc: (req, res, next) => {
+        models.ServiceDescription.destroy({where:{title:req.body.title}}).then(()=>{
+            res.sendStatus(200);
+        });
+    },
+
 
 
     /**
@@ -67,9 +75,8 @@ module.exports = {
 function getData() {
     let promises = [
         models.ServiceTime.getServiceTimes(),
-        models.Service.getServiceDescription(),
-        models.Music.getMusic(),
-        models.File.getFiles()
+        models.ServiceDescription.getServiceDescriptions(),
+        models.Music.getMusic()
     ];
 
     return Promise.all(promises)
@@ -80,8 +87,6 @@ function getData() {
             data.service.times = values[0];
             data.service.description = values[1];
             data.musicItem = values[2];
-            data.docs = values[3].docs;
-            data.audio = values[3].audio;
 
             return data;
         });
