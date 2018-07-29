@@ -4,22 +4,18 @@ module.exports = (sequelize, DataTypes) => {
         bulletin: DataTypes.TEXT,
         refrigerator: DataTypes.TEXT,
         newsletter: DataTypes.TEXT,
+        constitution: DataTypes.TEXT,
+        annual_report: DataTypes.TEXT,
+        boards_teams: DataTypes.TEXT,
         audiofile: DataTypes.TEXT
     }, {
         classMethods: {
             associate: function(models) {
                 // associations can be defined here
             },
-            getFiles: function() {
-                return this.findOne().then(result => {
-                    let files = {}
-                    files.docs = {};
-                    files.docs.bulletin = result.get().bulletin;
-                    files.docs.refrigerator = result.get().refrigerator;
-                    files.docs.newsletter = result.get().newsletter;
-
-                    files.audio = result.get().audiofile;
-                    return files;
+            getFiles: function(columns) {
+                return this.findOne({attributes:columns}).then(result => {
+                    return result.get();
                 });
             }
         }

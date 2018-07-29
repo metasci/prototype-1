@@ -55,7 +55,6 @@ module.exports = {
 				// only the files that were submitted
 				if(files[key].size > 0) {
 					newFiles[key] = files[key].name;
-				
 
 					// promise
 					let makeSpace = cleardir(`${root}/public/storage/uploads/${key}`);

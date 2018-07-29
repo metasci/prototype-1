@@ -32,6 +32,9 @@ router.post('/contact', Controller.Contact.send);
 
 router.get('/staff', Controller.Staff.index);
 
+router.get('/governance', Controller.Governance.index);
+
+
 
 
 

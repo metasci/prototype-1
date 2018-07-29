@@ -5,6 +5,8 @@
 <div class="container topmargin border-top-dark">
     <div class="container text-center topmargin">
         <form action="/admin/files" method="POST" enctype="multipart/form-data">
+
+            <h4>Worship Page Files</h4>
             <div class="row">
             
                 <div class="col">
@@ -33,6 +35,35 @@
                 </div>
             
             </div>
+
+            <hr>
+
+            <h4>Governance Page Files</h4>
+            <div class="row">
+
+                <div class="col">
+                    <h6 class="topmargin">Constitution and Bylaws</h6>
+                    <input class="hide fileinput" type="file" name="constitution" accept=".pdf">
+                    <button type="button" class="btn btn-outline-dark filebtn"><span data-feather="upload"></span> Upload PDF</button>
+                    <p class="filelabel topmargin"></p>
+                </div>
+                <div class="col">
+                    <h6 class="topmargin">Annual Report</h6>
+                    <input class="hide fileinput" type="file" name="annual_report" accept=".pdf">
+                    <button type="button" class="btn btn-outline-dark filebtn"><span data-feather="upload"></span> Upload PDF</button>
+                    <p class="filelabel topmargin"></p>
+                </div>
+                <div class="col">
+                    <h6 class="topmargin">Boards and Teams</h6>
+                    <input class="hide fileinput" type="file" name="boards_teams" accept=".pdf">
+                    <button type="button" class="btn btn-outline-dark filebtn"><span data-feather="upload"></span> Upload PDF</button>
+                    <p class="filelabel topmargin"></p>
+                </div>
+
+            </div>
+
+
+
             <div class="row topmargin">
                 <div class="col">
                     <button type="submit" class="btn btn-primary">Submit</button>
