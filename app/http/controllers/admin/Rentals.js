@@ -19,8 +19,8 @@ module.exports = {
 	 */
 	create: (req, res, next) => {
 
-		models.Wedding.findOne().then(wedding =>{
-			wedding.update({description: req.body.description})
+		models.Rental.findOne().then(rental =>{
+			rental.update({description: req.body.description})
 				.then(()=>{
 					res.sendStatus(200);
 				});
@@ -30,13 +30,17 @@ module.exports = {
 
 function getData() {
     let promises = [
-        models.Wedding.getWeddingDetails()
+        models.Rental.getRentalDetails(),
+        models.File.getFiles(['weddings'])
     ];
 
     return Promise.all(promises)
         .then(values => {
             let data = {};
-            data.weddings = values[0];
+
+            data.rentals = values[0];
+            data.weddingBrochure = values[1].weddings;
+
             return data;
         });
 }
