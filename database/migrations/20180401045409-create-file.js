@@ -29,6 +29,12 @@ module.exports = {
             audiofile: {
                 type: Sequelize.TEXT
             },
+            weddings: {
+                type: Sequelize.TEXT
+            },
+            outreach: {
+                type: Sequelize.TEXT
+            },
             createdAt: {
                 allowNull: false,
                 type: Sequelize.DATE

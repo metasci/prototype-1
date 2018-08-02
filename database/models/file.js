@@ -7,7 +7,9 @@ module.exports = (sequelize, DataTypes) => {
         constitution: DataTypes.TEXT,
         annual_report: DataTypes.TEXT,
         boards_teams: DataTypes.TEXT,
-        audiofile: DataTypes.TEXT
+        audiofile: DataTypes.TEXT,
+        weddings: DataTypes.TEXT,
+        outreach: DataTypes.TEXT
     }, {
         classMethods: {
             associate: function(models) {

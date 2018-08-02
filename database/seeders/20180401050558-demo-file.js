@@ -10,7 +10,9 @@ module.exports = {
             annual_report: 'test_annual_report.pdf',
             constitution: 'test_constitution.pdf',
             boards_teams: 'test_boards_teams.pdf',
-            audiofile: 'test_audio.mp3'
+            audiofile: 'test_audio.mp3',
+            weddings: 'test_weddings.pdf',
+            outreach: 'test_outreach.pdf'
         }], {});
 
     },
