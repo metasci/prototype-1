@@ -6,7 +6,7 @@ module.exports = {
         return queryInterface.bulkInsert('Files', [{
             bulletin: 'test_bulletin.pdf',
             refrigerator: 'test_fridge.pdf',
-            newsletter: 'test_newsletter.pdf',
+            newsletter: 'August 2018.pdf',
             annual_report: 'test_annual_report.pdf',
             constitution: 'test_constitution.pdf',
             boards_teams: 'test_boards_teams.pdf',

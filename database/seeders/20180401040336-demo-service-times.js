@@ -5,13 +5,7 @@ module.exports = {
     
     return queryInterface.bulkInsert('ServiceTimes', [
       {
-        time: '8 PM Friday'
-      },
-      {
-        time: '5 PM Saturday'
-      },
-      {
-        time: '10 AM Sunday'
+        time: 'Sunday, 9:45a.m.'
       }
     ], {});
   
@@ -23,3 +17,5 @@ module.exports = {
   
   }
 };
+
+
