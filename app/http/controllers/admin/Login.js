@@ -45,7 +45,6 @@ module.exports = {
 
 
 	logout: (req, res, next) => {
-		console.log('***********  wtf');
 		req.session.reset();
 		res.redirect('/');
 	}
