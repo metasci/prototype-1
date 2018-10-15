@@ -1,5 +1,6 @@
 const root 		= require('app-root-path');
 const models 	= require(root + '/database/models');
+const logger = require(root + '/libs/logger/logger');
 
 module.exports = {
 	
@@ -8,10 +9,14 @@ module.exports = {
 	 */
 	index: (req, res, next) => {
 
-	    getData().then(data => {
-	        res.locals.data = data;
-            res.render('pages/public/rentals');
-        });
+	    getData()
+            .then(data => {
+                res.locals.data = data;
+                res.render('pages/public/rentals');
+            })
+            .catch(err => {
+                logger.error("(public) Rentals.index: " + err);
+            });
 	}
 }
 

@@ -1,15 +1,20 @@
 const root = require('app-root-path');
 const models = require(root + '/database/models');
+const logger = require(root + '/libs/logger/logger');
 
 module.exports = {
 
     index: (req, res, next) => {
-        getData().then(data => {
-            res.locals.data = data;
-            res.render('pages/public/worship');
-        });
+        getData()
+            .then(data => {
+                res.locals.data = data;
+                res.render('pages/public/worship');
+            })
+            .catch(err => {
+                logger.error("(public) Worship.index: " + err);
+            });
     }
-}
+};
 
 function getData() {
     let promises = [

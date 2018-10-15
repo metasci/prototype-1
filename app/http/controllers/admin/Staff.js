@@ -3,6 +3,7 @@ const models 		= require(root + '/database/models');
 const fs 			= require('fs');
 const formidable 	= require('formidable');
 const uniqid 		= require('uniqid');
+const logger = require(root + '/libs/logger/logger');
 
 module.exports = {
 
@@ -11,20 +12,25 @@ module.exports = {
 	 */
 	index: (req, res, next) => {
 		res.locals.staff = [];
-		models.Staff.findAll().then(results => {
-			results.forEach(item => {
-				let staff = {
-					id: item.get().id,
-					photo: item.get().photo,
-					name: item.get().name,
-					title: item.get().title,
-					description: item.get().description
-				}
-				res.locals.staff.push(staff);
-			});
-		}).finally(()=>{
-			res.render('pages/admin/staff');
-		});
+		models.Staff.findAll()
+            .then(results => {
+                results.forEach(item => {
+                    let staff = {
+                        id: item.get().id,
+                        photo: item.get().photo,
+                        name: item.get().name,
+                        title: item.get().title,
+                        description: item.get().description
+                    }
+                    res.locals.staff.push(staff);
+                });
+            })
+            .catch(err => {
+                logger.error("(admin) Staff.index: " + err);
+            })
+            .then(()=>{
+                res.render('pages/admin/staff');
+            });
 	},
 
 	/**
@@ -46,21 +52,25 @@ module.exports = {
 			}
 
 			// add new Staff to db here
-			models.Staff.create(newStaff).then(()=>{
+			models.Staff.create(newStaff)
+                .then(()=>{
 
-				// save image to root/public/storage/images/staff
-				let oldpath = files.image.path;
-				let newpath = `${root}/public/storage/images/staff/${newStaff.photo}`;
-				fs.copyFile(oldpath, newpath, err => {
-					if(err) throw err;
-					fs.unlink(oldpath, err => {
-						if(err) throw err;
-						res.redirect('/admin/staff');
-					});
-				});
+                    // save image to root/public/storage/images/staff
+                    let oldpath = files.image.path;
+                    let newpath = `${root}/public/storage/images/staff/${newStaff.photo}`;
+                    fs.copyFile(oldpath, newpath, err => {
+                        if(err) throw err;
+                        fs.unlink(oldpath, err => {
+                            if(err) throw err;
+                            res.redirect('/admin/staff');
+                        });
+                    });
 
-			});
-		});	
+                })
+                .catch(err => {
+                    logger.error("(admin) Staff.create: " + err);
+                });
+        });
 	},
 
 	/**
@@ -69,12 +79,16 @@ module.exports = {
 	destroy: (req, res, next) => {
 
 		//remove selected staff from db here
-		models.Staff.destroy({where: {id: req.body.id}}).then(result => {
-			fs.unlink(`${root}/public${req.body.image}`, err => {
-				if(err) throw err;
-				res.sendStatus(200);
-			});
-		});
-		
+		models.Staff.destroy({where: {id: req.body.id}})
+            .then(result => {
+                fs.unlink(`${root}/public${req.body.image}`, err => {
+                    if(err) throw err;
+                    res.sendStatus(200);
+                });
+            })
+            .catch(err => {
+                logger.error("(admin) Staff.create: " + err);
+                res.sendStatus(500);
+            });
 	}
 }

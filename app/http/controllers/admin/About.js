@@ -1,5 +1,6 @@
 const root 		= require('app-root-path');
 const models 	= require(root + '/database/models');
+const logger = require(root + '/libs/logger/logger');
 
 module.exports = {
 	
@@ -8,11 +9,16 @@ module.exports = {
 	 */
 	index: (req, res, next) => {
 		
-		models.About.findOne().then(result => {
-			res.locals.about = decodeURI(result.get().description);
-		}).finally(()=>{
-			res.render('pages/admin/about');
-		});
+		models.About.findOne()
+            .then(result => {
+			    res.locals.about = decodeURI(result.get().description);
+		    })
+            .catch(err => {
+                logger.error("(admin) About.index: " + err);
+            })
+            .then(()=>{
+                res.render('pages/admin/about');
+            });
 	},
 	
 	/**
@@ -24,7 +30,9 @@ module.exports = {
 			about.update({description: req.body.description})
 				.then(()=>{
 					res.sendStatus(200);
-				});
-		});
+				}).catch(err => {
+				    logger.error("(admin) About.create: " + err);
+                });
+        });
 	}
 }

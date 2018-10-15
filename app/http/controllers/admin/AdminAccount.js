@@ -1,6 +1,7 @@
 const root 			= require('app-root-path');
 const models 		= require(root + '/database/models');
 const bcrypt = require('bcrypt');
+const logger = require(root + '/libs/logger/logger');
 
 module.exports = {
 	
@@ -14,26 +15,31 @@ module.exports = {
 	update: (req, res, next) => {
 
 		
-		models.Admin.findOne().then( admin =>{
+		models.Admin.findOne()
+            .then( admin =>{
 
-			// make compare current the passwd from db
-			bcrypt.compare(req.body.current, admin.get().passwd, (err, result) => {
-				if(result) {
-					delete req.session.error;
-					// current passwd is correct
-					// hash new passwd
-					bcrypt.hash(req.body.passwd, 10, function(err, hash) {
-						// save new passwd to db
-						admin.update({passwd: hash}).then(()=>{
-							res.redirect('/admin/account');
-						});
-					});
-				} else {
-					// current passwd is incorrect
-					req.session.error = "The current password you entered was incorrect.";
-					res.redirect('/admin/account');
-				}
-			});
-		});
+                // make compare current the passwd from db
+                bcrypt.compare(req.body.current, admin.get().passwd, (err, result) => {
+                    if(result) {
+                        delete req.session.error;
+                        // current passwd is correct
+                        // hash new passwd
+                        bcrypt.hash(req.body.passwd, 10, function(err, hash) {
+                            // save new passwd to db
+                            admin.update({passwd: hash})
+                                .then(()=>{
+                                    res.redirect('/admin/account');
+                                });
+                        });
+                    } else {
+                        // current passwd is incorrect
+                        req.session.error = "The current password you entered was incorrect.";
+                        res.redirect('/admin/account');
+                    }
+                });
+            })
+            .catch(err => {
+                logger.error("(admin) AdminAccount.update: " + err);
+            });
 	}
 }

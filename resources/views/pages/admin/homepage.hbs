@@ -21,7 +21,7 @@
                 </tr>
             </thead>
             <tbody>
-                {{#each highlights}}
+                {{#each data.highlights}}
                     <tr>
                         <td>{{this.date}}</td>
                         <td>{{this.time}}</td>
@@ -60,7 +60,7 @@
     <div class="jumbotron topmargin">
         <h4>Update Church Mission Statement</h4>
         <form class="form" action="/admin/homepage/missionstatement" method="post">
-            <input class="form-control" type="text" name="mission" value="{{mission}}">
+            <input class="form-control" type="text" name="mission" value="{{data.mission}}">
             <button type="submit" class="btn btn-primary topmargin">Submit</button>
         </form>
     </div>
@@ -70,7 +70,7 @@
     <div class="jumbotron topmargin">
         <h4>Update Quote from Pastor</h4>
         <form class="form" action="/admin/homepage/pastorquote" method="post">
-            <input class="form-control" type="text" name="quote" value="{{pastorQuote}}">
+            <input class="form-control" type="text" name="quote" value="{{data.pastorQuote}}">
             <button type="submit" class="btn btn-primary topmargin">Submit</button>
         </form>
     </div>
@@ -83,7 +83,7 @@
             <h6>Edit Annual Message</h6>
             <div id="editor">
                 {{!-- inject db info here --}}
-                {{{annualMsg}}}
+                {{{data.annualMsg}}}
             </div>
             <button type="submit" class="btn btn-primary topmargin">Submit</button>
         </form>

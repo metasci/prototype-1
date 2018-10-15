@@ -1,5 +1,6 @@
 const root 		= require('app-root-path');
 const models 	= require(root + '/database/models');
+const logger    = require(root + '/libs/logger/logger');
 
 module.exports = {
 	/**
@@ -7,10 +8,15 @@ module.exports = {
 	 */
 	index: (req, res, next) => {
 		
-		models.About.findOne().then(result => {
-			res.locals.about = decodeURI(result.get().description);
-		}).finally(()=>{
-			res.render('pages/public/about');
-		});
+		models.About.findOne()
+            .then(result => {
+                res.locals.about = decodeURI(result.get().description);
+            })
+            .catch(err => {
+                logger.error("(public) About.index: " + err);
+            })
+            .then(()=>{
+                res.render('pages/public/about');
+            });
 	}
-}
+};

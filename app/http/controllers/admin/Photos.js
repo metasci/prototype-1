@@ -3,6 +3,7 @@ const models 		= require(root + '/database/models');
 const fs 			= require('fs');
 const formidable 	= require('formidable');
 const uniqid 		= require('uniqid');
+const logger = require(root + '/libs/logger/logger');
 
 
 module.exports = {
@@ -13,18 +14,23 @@ module.exports = {
 	index: (req, res, next) => {
 
 		res.locals.photos = [];
-		models.Photo.findAll().then(results => {
-			results.forEach(item => {
-				let photos = {
-					id: item.get().id,
-					photo: item.get().photo,
-					description: item.get().description
-				}
-				res.locals.photos.push(photos);
-			});
-		}).finally(()=>{
-			res.render('pages/admin/photos');
-		});
+		models.Photo.findAll()
+            .then(results => {
+                results.forEach(item => {
+                    let photos = {
+                        id: item.get().id,
+                        photo: item.get().photo,
+                        description: item.get().description
+                    }
+                    res.locals.photos.push(photos);
+                });
+            })
+            .catch(err => {
+                logger.error("(admin) Photos.index: " + err);
+            })
+            .then(()=>{
+                res.render('pages/admin/photos');
+            });
 	},
 
 	/**
@@ -44,21 +50,24 @@ module.exports = {
 			}
 
 			// add new photo to db here
-			models.Photo.create(newPhoto).then(()=>{
+			models.Photo.create(newPhoto)
+                .then(()=>{
 
-				// save image to root/public/storage/images/photos
-				let oldpath = files.image.path;
-				let newpath = `${root}/public/storage/images/photos/${newPhoto.photo}`;
-				fs.copyFile(oldpath, newpath, err => {
-					if(err) throw err;
+                    // save image to root/public/storage/images/photos
+                    let oldpath = files.image.path;
+                    let newpath = `${root}/public/storage/images/photos/${newPhoto.photo}`;
+                    fs.copyFile(oldpath, newpath, err => {
+                        if(err) throw err;
 
-					fs.unlink(oldpath, err => {
-						if(err) throw err;
-						res.redirect('/admin/photos');
-					});
-				});
-
-			});
+                        fs.unlink(oldpath, err => {
+                            if(err) throw err;
+                            res.redirect('/admin/photos');
+                        });
+                    });
+                })
+                .catch(err => {
+                    logger.error("(admin) Photos.create: " + err);
+                });
 		});	
 	},
 
@@ -68,12 +77,16 @@ module.exports = {
 	destroy: (req, res, next) => {
 
 		//remove selected staff from db here
-		models.Photo.destroy({where: {id: req.body.id}}).then(result => {
-			fs.unlink(`${root}/public${req.body.image}`, err => {
-				if(err) throw err;
-				res.sendStatus(200);
-			});
-		});
+		models.Photo.destroy({where: {id: req.body.id}})
+            .then(result => {
+                fs.unlink(`${root}/public${req.body.image}`, err => {
+                    if(err) throw err;
+                    res.sendStatus(200);
+                });
+            })
+            .catch(err => {
+                logger.error("(admin) Photos.destroy: " + err);
+            });
 		
 	}
 }

@@ -1,15 +1,19 @@
 const root 		= require('app-root-path');
 const models 	= require(root + '/database/models');
+const logger = require(root + '/libs/logger/logger');
 
 module.exports = {
 	
 	index: (req, res, next) => {
-        getData().then(data => {
-            res.locals.data = data;
-            res.render('pages/admin/worship');
-        });
+        getData()
+            .catch(err => {
+                logger.error("(admin) Worship.index: " + err);
+            })
+            .then(data => {
+                res.locals.data = data;
+                res.render('pages/admin/worship');
+            });
 	},
-
 
     /**
      * Music
@@ -18,19 +22,26 @@ module.exports = {
         let newMusic = {
             title: req.body.title,
             description: req.body.description
-        }
+        };
 
-        models.Music.create(newMusic).then(()=>{
-            res.sendStatus(200);
-        });
+        models.Music.create(newMusic)
+            .catch(err => {
+                logger.error("(admin) Staff.createMusic: " + err);
+            })
+            .then(()=>{
+                res.sendStatus(200);
+            });
     },
 
     deleteMusic: (req, res, next) => {
-        models.Music.destroy({where:{title:req.body.title}}).then(()=>{
-            res.sendStatus(200);
-        });
+        models.Music.destroy({where:{title:req.body.title}})
+            .catch(err => {
+                logger.error("(admin) Staff.deleteMusic: " + err);
+            })
+            .then(()=>{
+                res.sendStatus(200);
+            });
     },
-
 
 	/**
 	 * Service Description
@@ -39,36 +50,53 @@ module.exports = {
         let newServiceDesc = {
             title: req.body.title,
             description: req.body.description
-        }
+        };
 
-        models.ServiceDescription.create(newServiceDesc).then(()=>{
-            res.sendStatus(200);
-        });
+        models.ServiceDescription.create(newServiceDesc)
+            .then(()=>{
+                res.sendStatus(200);
+            })
+            .catch(err => {
+                logger.error("(admin) Staff.createServiceDesc: " + err);
+                res.sendStatus(500);
+            });
 	},
 
     deleteServiceDesc: (req, res, next) => {
-        models.ServiceDescription.destroy({where:{title:req.body.title}}).then(()=>{
-            res.sendStatus(200);
-        });
+        models.ServiceDescription.destroy({where:{title:req.body.title}})
+            .then(()=>{
+                res.sendStatus(200);
+            })
+            .catch(err => {
+                logger.error("(admin) Staff.deleteServiceDesc: " + err);
+                res.sendStatus(500);
+            });
     },
-
-
 
     /**
     * Service Time
     */
 	addTime: (req, res, next) => {
-		models.ServiceTime.create({time:req.body.time}).then(()=>{
-			res.redirect('/admin/worship/');
-		});
+		models.ServiceTime.create({time:req.body.time})
+            .catch(err => {
+                logger.error("(admin) Staff.addTime: " + err);
+            })
+            .then(()=>{
+                res.redirect('/admin/worship/');
+            });
 	},
 
 	deleteTime: (req, res, next) => {
-		models.ServiceTime.destroy({where:{id:req.body.id}}).then(()=>{
-			res.sendStatus(200);
-		});
+		models.ServiceTime.destroy({where:{id:req.body.id}})
+            .then(()=>{
+                res.sendStatus(200);
+            })
+            .catch(err => {
+                logger.error("(admin) Staff.deleteTime: " + err);
+                res.sendStatus(500);
+            });
 	}
-}
+};
 
 
 

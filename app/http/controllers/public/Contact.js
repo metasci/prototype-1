@@ -1,6 +1,6 @@
+const root 		= require('app-root-path');
 const nodemailer = require('nodemailer');
-
-// require('dotenv').config();
+const logger = require(root + '/libs/logger/logger');
 
 
 const transporter = nodemailer.createTransport({
@@ -32,9 +32,9 @@ module.exports = {
 		
 		transporter.sendMail(message, function(error, info){
 			if (error) {
-				console.log(error);
+				logger.error("(public) Contact.send: " + error);
 			} else {
-				console.log('Email sent: ' + info.response);
+                logger.info('Email sent: ' + info.response);
 			}
 		});
 		res.redirect('/contact');

@@ -1,5 +1,6 @@
 const root 		= require('app-root-path');
 const models 	= require(root + '/database/models');
+const logger = require(root + '/libs/logger/logger');
 
 module.exports = {
 	
@@ -7,7 +8,11 @@ module.exports = {
 	 * Retrieve wedding info to display on admin dash
 	 */
 	index: (req, res, next) => {
-        getData().then(data => {
+        getData()
+            .catch(err => {
+                logger.error("(admin) Rentals.index: " + err);
+            })
+            .then(data => {
             res.locals.data = data;
             res.render('pages/admin/rentals');
         });
@@ -19,12 +24,16 @@ module.exports = {
 	 */
 	create: (req, res, next) => {
 
-		models.Rental.findOne().then(rental =>{
-			rental.update({description: req.body.description})
-				.then(()=>{
-					res.sendStatus(200);
-				});
-		});
+		models.Rental.findOne()
+            .then(rental =>{
+                rental.update({description: req.body.description})
+                    .then(()=>{
+                        res.sendStatus(200);
+                    });
+            })
+            .catch(err => {
+                logger.error("(admin) Rentals.index: " + err);
+            });
 	}
 }
 
