@@ -2,6 +2,9 @@
   "name": "mvcexpressjs",
   "version": "0.0.0",
   "private": true,
+  "engines": {
+    "node": "10.11.0"
+  },
   "scripts": {
     "start": "node ./app/webpack/autoload && webpack && node ./bin/www",
     "debug": "node ./app/webpack/autoload && webpack && node %NODE_DEBUG_OPTION% ./bin/www",

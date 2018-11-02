@@ -5,6 +5,7 @@ coverage/
 tags
 
 *.swp
+*.swo
 
 dist/
 
