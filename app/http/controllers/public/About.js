@@ -11,9 +11,6 @@ module.exports = {
 		models.About.findOne()
             .then(result => {
                 res.locals.about = decodeURI(result.get().description);
-                logger.info("test");
-                logger.debug("test");
-                logger.error("test");
             })
             .catch(err => {
                 logger.error("(public) About.index: " + err);
