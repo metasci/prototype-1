@@ -4,7 +4,7 @@ const logger = require(root + '/libs/logger/logger');
 
 
 const transporter = nodemailer.createTransport({
-	service: 'gmail',
+	service: 'Gmail',
 	auth: {
 		user: 'clintonuccmailsender@gmail.com',
 		pass: process.env.MAILERPASSWD
