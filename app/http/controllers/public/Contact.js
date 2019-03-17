@@ -4,9 +4,11 @@ const logger = require(root + '/libs/logger/logger');
 
 
 const transporter = nodemailer.createTransport({
-	service: 'Gmail',
+    host: process.env.MAILERHOST,
+    port: process.env.MAILERPORT,
+    secure: true,
 	auth: {
-		user: 'clintonuccmailsender@gmail.com',
+		user: process.env.MAILERUSERNAME,
 		pass: process.env.MAILERPASSWD
 	}
 });
@@ -22,7 +24,7 @@ module.exports = {
 		
 		
 		var message = {
-			from: 'clintonuccmailsender@gmail.com',
+			from: process.env.MAILERUSERNAME,
 			to: 'clintonunitedchurchofchrist@gmail.com',
 			subject: `${req.body.name} sent a message from your website!`, // make important
 			html: `<strong>Senders name:</strong> ${req.body.name}<br>
